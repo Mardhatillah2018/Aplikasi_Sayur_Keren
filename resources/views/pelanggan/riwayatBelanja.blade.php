@@ -1,10 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+
 <section class="mt-5">
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-12 col-lg-10 mb-4">
+            <div class="col-md-12 col-lg-12 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
                         <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Riwayat Belanja</h4>
@@ -57,6 +58,7 @@
                                         <th scope="col">Bukti Transfer</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Pesan</th>
+                                        <th scope="col">Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,22 +68,24 @@
                                         <td>Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
                                         <td id="button-cell-{{ $checkout->id }}">
                                             @if($checkout->bukti_transfer)
-                                                <button class="btn btn-success" title="Lihat Bukti Transfer"
-                                                    onclick="window.open('{{ asset($checkout->bukti_transfer) }}', '_blank')">
+                                                <button class="btn btn-success"
+                                                        style="font-size: 13px; padding: 5px 5px;"
+                                                        title="Lihat Bukti Transfer"
+                                                        onclick="window.open('{{ asset($checkout->bukti_transfer) }}', '_blank')">
                                                     Lihat Bukti
                                                 </button>
                                             @else
-                                                <button class="btn" style="background-color: #db9a44; color: white;"
-                                                    title="Upload Bukti Transfer"
-                                                    onclick="document.getElementById('fileInput{{ $checkout->id }}').click()">
+                                                <button class="btn"
+                                                        style="background-color: #db9a44; color: white; font-size: 13px; padding: 5px 5px;"
+                                                        title="Upload Bukti Transfer"
+                                                        onclick="document.getElementById('fileInput{{ $checkout->id }}').click()">
                                                     Upload Bukti
                                                 </button>
                                                 <input type="file" id="fileInput{{ $checkout->id }}" name="bukti_transfer"
-                                                    style="display: none;"
-                                                    onchange="uploadBukti({{ $checkout->id }})">
+                                                       style="display: none;"
+                                                       onchange="uploadBukti({{ $checkout->id }})">
                                             @endif
                                         </td>
-
 
                                         <td>
                                             @if($checkout->status == 'pesanan diterima')
@@ -96,11 +100,82 @@
                                         </td>
                                         <td>
                                             @if($checkout->catatan_admin)
-                                                <span class="small">{{ $checkout->catatan_admin }}</span> <!-- Tampilkan pesan -->
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal-{{ $checkout->id }}" title="Lihat Pesan">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="messageModal-{{ $checkout->id }}" tabindex="-1" aria-labelledby="messageModalLabel-{{ $checkout->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="messageModalLabel-{{ $checkout->id }}">Pesan</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p class="small text-wrap">{{ $checkout->catatan_admin }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @else
-                                                <span class="small">-</span> <!-- Jika tidak ada pesan -->
+                                                <span class="small text-muted">-</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if($checkout->ulasan)
+                                                <!-- Tombol untuk melihat ulasan -->
+                                                <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewUlasanModal{{ $checkout->id }}" title="Lihat Ulasan">
+                                                    <i class="fas fa-eye"></i> Lihat Ulasan
+                                                </button>
+
+                                                <!-- Modal untuk melihat ulasan -->
+                                                <div class="modal fade" id="viewUlasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="viewUlasanModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="viewUlasanModalLabel">Ulasan Anda</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>{{ $checkout->ulasan }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <!-- Tombol untuk memberi ulasan -->
+                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#ulasanModal{{ $checkout->id }}" title="Beri Ulasan">
+                                                    <i class="fas fa-star"></i> Beri Ulasan
+                                                </button>
+
+                                                <!-- Modal untuk memberi ulasan -->
+                                                <div class="modal fade" id="ulasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="ulasanModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="ulasanModalLabel">Beri Ulasan</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route('riwayatBelanja.simpanUlasan', $checkout->id) }}" method="POST">
+                                                                    @csrf
+                                                                    <div class="mb-3">
+                                                                        <textarea class="form-control" id="ulasan" name="ulasan" rows="4" placeholder="Ketik Ulasan" required></textarea>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-success">Simpan Ulasan</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </td>
+
+
                                     </tr>
                                     @endforeach
                                 </tbody>

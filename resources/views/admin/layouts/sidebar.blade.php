@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-pengantar') ? 'active' : '' }}" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-pengantar') ? 'active' : '' }}" href="/admin-pengantar">
                         <i class="bi bi-bicycle"></i>
                         Pengantar Pesanan
                     </a>

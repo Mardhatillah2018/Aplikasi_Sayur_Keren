@@ -26,6 +26,7 @@ class Checkout extends Model
         'status',
         'bukti_transfer',
         'catatan_admin',
+        'ulasan'
     ];
 
     protected $attributes = [

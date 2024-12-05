@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PengantarController;
 use App\Http\Controllers\PengelolaController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PromoController;
@@ -126,8 +127,8 @@ Route::delete('/admin-pelanggan/{id}', [PenggunaController::class, 'destroy'])->
 Route::resource('/admin-promo', PromoController::class)->middleware(['auth', 'role:admin']);
 
 Route::resource('/admin-pengelola', PengelolaController::class)->middleware(['auth', 'role:admin']);
+Route::resource('/admin-pengantar', PengantarController::class)->middleware(['auth', 'role:admin']);
 
-// ini route yang ika tambha
 Route::get('/pesanan', function () {
     return view('pengelola.pesanan');
 })->middleware(['auth', 'role:pengelola']);
@@ -140,4 +141,11 @@ Route::get('/pesanan', [CheckoutController::class, 'showPesanan'])->middleware([
 // Route::put('/pesanan/{id}/update-status', [CheckoutController::class, 'updateStatus'])->name('checkouts.updateStatus');
 Route::put('/checkouts/{id}/update-status', [CheckoutController::class, 'updateStatus'])->name('checkouts.updateStatus')->middleware(['auth', 'role:pengelola']);
 Route::post('/checkouts/{id}/send-message', [CheckoutController::class, 'sendMessage'])->name('checkouts.sendMessage');
+
+Route::get('/pesanan-masuk', function () {
+    return view('pengantar.pesananMasuk');
+})->middleware(['auth', 'role:pengantar']);
+
+Route::post('/riwayat-belanja/{id}/ulasan', [RiwayatBelanjaController::class, 'simpanUlasan'])->name('riwayatBelanja.simpanUlasan');
+
 

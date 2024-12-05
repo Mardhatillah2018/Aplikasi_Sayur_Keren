@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class PengelolaController extends Controller
+class PengantarController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pengelolas = Pengguna::where('role', 'pengelola')->latest()->paginate(10);
+        $pengantars = Pengguna::where('role', 'pengantar')->latest()->paginate(10);
 
-        return view('admin.admin-pengelola.index', compact('pengelolas'));
+        return view('admin.admin-pengantar.index', compact('pengantars'));
     }
 
     /**
@@ -24,7 +24,7 @@ class PengelolaController extends Controller
      */
     public function create()
     {
-        return view('admin.admin-pengelola.create');
+        return view('admin.admin-pengantar.create');
     }
 
     /**
@@ -39,17 +39,17 @@ class PengelolaController extends Controller
             'password' => 'required|min:4|confirmed', // Validasi konfirmasi password
         ]);
 
-        // Buat pengguna baru dengan role "pengelola"
+        // Buat pengguna baru dengan role "Pengantar"
         Pengguna::create([
             'username' => $validated['username'],
             'email' => $validated['email'],
             'nohp' => $validated['nohp'], // No HP jika ada
             'password' => Hash::make($validated['password']), // Hash password
-            'role' => 'pengelola', // Set role sebagai pengelola
+            'role' => 'pengantar', // Set role sebagai pengantar
         ]);
 
-        // Redirect ke halaman daftar pengelola dengan pesan sukses
-        return redirect('/admin-pengelola')->with('pesan', 'Pengelola berhasil ditambahkan!');
+        // Redirect ke halaman daftar pengantar dengan pesan sukses
+        return redirect('/admin-pengantar')->with('pesan', 'Pengantar berhasil ditambahkan!');
     }
 
     /**
@@ -64,18 +64,18 @@ class PengelolaController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-{
-    // Temukan pengelola berdasarkan id
-    $pengelola = Pengguna::findOrFail($id);
+    {
+        // Temukan pengantar berdasarkan id
+        $pengantar = Pengguna::findOrFail($id);
 
-    // Kirim data pengelola ke view
-    return view('admin.admin-pengelola.edit', compact('pengelola'));
-}
+        // Kirim data pengantar ke view
+        return view('admin.admin-pengantar.edit', compact('pengantar'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         // Validasi data yang dikirim
         $validated = $request->validate([
@@ -84,21 +84,21 @@ class PengelolaController extends Controller
         ]);
 
         try {
-            // Temukan pengelola yang akan diupdate
-            $pengelola = Pengguna::findOrFail($id);
+            // Temukan pengantar yang akan diupdate
+            $pengantar = Pengguna::findOrFail($id);
 
             // Update data pengguna
-            $pengelola->username = $validated['username'];
-            $pengelola->nohp = $validated['nohp'];
+            $pengantar->username = $validated['username'];
+            $pengantar->nohp = $validated['nohp'];
 
             // Simpan perubahan
-            $pengelola->save();
+            $pengantar->save();
 
             // Redirect dengan pesan sukses
-            return redirect('/admin-pengelola')->with('pesan', 'Pengelola berhasil diperbarui!');
+            return redirect('/admin-pengantar')->with('pesan', 'Pengantar berhasil diperbarui!');
         } catch (\Exception $e) {
             // Tangani error jika ada
-            Log::error('Error saat memperbarui data pengelola: ' . $e->getMessage());
+            Log::error('Error saat memperbarui data pengantar: ' . $e->getMessage());
             return redirect()->back()->withErrors('Terjadi kesalahan saat memperbarui data. Silakan coba lagi.');
         }
     }
@@ -109,6 +109,6 @@ class PengelolaController extends Controller
     public function destroy(string $id)
     {
         Pengguna::destroy($id);
-        return redirect('admin-pengelola')->with('pesan', 'Data berhasil dihapus');
+        return redirect('admin-pengantar')->with('pesan', 'Data berhasil dihapus');
     }
 }
