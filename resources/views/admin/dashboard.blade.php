@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 <script src="js/scripts.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
 @extends('admin.layouts.main')
 
@@ -29,24 +30,23 @@
 
     <!-- General Report -->
     <div class="grid grid-cols-4 gap-6 xl:grid-cols-1">
-
-        <!-- card -->
+        <!-- Card untuk jumlah kategori -->
         <div class="report-card">
-            <a href="{{ route('admin-produk.index') }}" class="text-decoration-none">
+            <a href="{{ route('admin-kategori.index') }}" class="text-decoration-none">
                 <div class="card">
                     <div class="card-body flex flex-col">
                         <!-- top -->
                         <div class="d-flex justify-between align-items-center">
-                            <!-- Ikon produk atau keranjang di sebelah kiri -->
-                            <div class="h4">
-                                <i class="bi bi-basket-fill fs-2" style="color: #07582d;"></i> <!-- Ikon dengan warna #07582d -->
+                            <!-- Ikon kategori di sebelah kiri -->
+                            <div class="px-3 py-2 rounded bg-green-600 text-white mr-3">
+                                <i class="fad fa-th-large"></i> <!-- Ikon kategori -->
                             </div>
-                            <!-- Jumlah produk dan tulisan di sebelah kanan -->
+                            <!-- Jumlah kategori dan tulisan di sebelah kanan -->
                             <div class="text-end">
                                 <h1 class="h3 num-4">
-                                    {{ $jumlahProduk }}
+                                    {{ $jumlahKategori }}
                                 </h1>
-                                <p style="color: #07582d;">Jumlah Produk</p> <!-- Tulisan jumlah produk dengan warna #07582d -->
+                                <p style="color: #07582d;">Jumlah Kategori</p> <!-- Tulisan jumlah kategori dengan warna #07582d -->
                             </div>
                         </div>
                         <!-- end top -->
@@ -55,94 +55,83 @@
             </a>
             <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
-    <!-- end card -->
 
-
-        <!-- card -->
-        <div class="report-card">
-            <div class="card">
-                <div class="card-body flex flex-col">
-
-                    <!-- top -->
-                    <div class="flex flex-row justify-between items-center">
-                        <div class="h6 text-red-700 fad fa-store"></div>
-                        <span class="rounded-full text-white badge bg-red-400 text-xs">
-                            6%
-                            <i class="fal fa-chevron-down ml-1"></i>
-                        </span>
+            <!-- Card untuk jumlah produk -->
+            <div class="report-card">
+                <a href="{{ route('admin-produk.index') }}" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body flex flex-col">
+                            <!-- top -->
+                            <div class="d-flex justify-between align-items-center">
+                                <!-- Ikon produk atau keranjang di sebelah kiri -->
+                                <div class="px-3 py-2 rounded bg-yellow-600 text-white mr-3">
+                                    <i class="fas fa-carrot"></i> <!-- Ikon produk atau kotak -->
+                                </div>
+                                <!-- Jumlah produk dan tulisan di sebelah kanan -->
+                                <div class="text-end">
+                                    <h1 class="h3 num-4">
+                                        {{ $jumlahProduk }}
+                                    </h1>
+                                    <p style="color: #07582d;">Jumlah Produk</p> <!-- Tulisan jumlah produk dengan warna #07582d -->
+                                </div>
+                            </div>
+                            <!-- end top -->
+                        </div>
                     </div>
-                    <!-- end top -->
-
-                    <!-- bottom -->
-                    <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
-                        <p>new orders</p>
-                    </div>
-                    <!-- end bottom -->
-
-                </div>
+                </a>
+                <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
             </div>
-            <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
-        </div>
-        <!-- end card -->
-
-
-        <!-- card -->
-        <div class="report-card">
-            <div class="card">
-                <div class="card-body flex flex-col">
-
-                    <!-- top -->
-                    <div class="flex flex-row justify-between items-center">
-                        <div class="h6 text-yellow-600 fad fa-sitemap"></div>
-                        <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                            72%
-                            <i class="fal fa-chevron-up ml-1"></i>
-                        </span>
+            <!-- Card untuk jumlah pelanggan -->
+<div class="report-card">
+    <a href="{{ route('admin.admin-pelanggan.index') }}" class="text-decoration-none">
+        <div class="card">
+            <div class="card-body flex flex-col">
+                <!-- top -->
+                <div class="d-flex justify-between align-items-center">
+                    <!-- Ikon pelanggan di sebelah kiri -->
+                    <div class="px-3 py-2 rounded bg-pink-600 text-white mr-3">
+                        <i class="fad fa-users"></i> <!-- Ikon produk atau kotak -->
                     </div>
-                    <!-- end top -->
-
-                    <!-- bottom -->
-                    <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
-                        <p>total Products</p>
+                    <!-- Jumlah pelanggan dan tulisan di sebelah kanan -->
+                    <div class="text-end">
+                        <h1 class="h3 num-4">
+                            {{ $jumlahPelanggan }}
+                        </h1>
+                        <p style="color: #07582d;">Jumlah Pelanggan</p>
                     </div>
-                    <!-- end bottom -->
-
                 </div>
+                <!-- end top -->
             </div>
-            <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
-        <!-- end card -->
+    </a>
+    <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+</div>
 
-
-        <!-- card -->
-        <div class="report-card">
-            <div class="card">
-                <div class="card-body flex flex-col">
-
-                    <!-- top -->
-                    <div class="flex flex-row justify-between items-center">
-                        <div class="h6 text-green-700 fad fa-users"></div>
-                        <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                            150%
-                            <i class="fal fa-chevron-up ml-1"></i>
-                        </span>
+<!-- Card untuk jumlah pesanan diproses -->
+<div class="report-card">
+    <a href="#" class="text-decoration-none">
+        <div class="card">
+            <div class="card-body flex flex-col">
+                <!-- top -->
+                <div class="d-flex justify-between align-items-center">
+                    <!-- Ikon pesanan diproses di sebelah kiri -->
+                    <div class="px-3 py-2 rounded text-white mr-3" style="background-color: #007bff;">
+                        <i class="fas fa-spinner fa-spin"></i> <!-- Ikon produk atau kotak -->
                     </div>
-                    <!-- end top -->
-
-                    <!-- bottom -->
-                    <div class="mt-8">
-                        <h1 class="h5 num-4"></h1>
-                        <p>new Visitor</p>
+                    <!-- Jumlah pesanan diproses dan tulisan di sebelah kanan -->
+                    <div class="text-end">
+                        <h1 class="h3 num-4">
+                            {{ $jumlahPesananDiproses }}
+                        </h1>
+                        <p style="color: #07582d;">Pesanan Diproses</p>
                     </div>
-                    <!-- end bottom -->
-
                 </div>
+                <!-- end top -->
             </div>
-            <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
-        <!-- end card -->
+    </a>
+    <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
+</div>
 
     </div>
     <!-- End General Report -->
@@ -380,117 +369,6 @@
     <div class="grid grid-cols-3 gap-6 mt-6 xl:grid-cols-1">
 
 
-    <!-- Browser Stats -->
-    <div class="card">
-        <div class="card-header">Browser Stats</div>
-
-        <!-- brawser -->
-        <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-            <div class="flex items-center">
-                <i class="fab fa-chrome mr-4"></i>
-                <h1>google chrome</h1>
-            </div>
-            <div>
-                <span class="num-2"></span>%
-            </div>
-        </div>
-        <!-- end brawser -->
-
-        <!-- brawser -->
-        <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-            <div class="flex items-center">
-                <i class="fab fa-firefox mr-4"></i>
-                <h1>firefox</h1>
-            </div>
-            <div>
-                <span class="num-2"></span>%
-            </div>
-        </div>
-        <!-- end brawser -->
-
-        <!-- brawser -->
-        <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b">
-            <div class="flex items-center">
-                <i class="fab fa-internet-explorer mr-4"></i>
-                <h1>internet explorer</h1>
-            </div>
-            <div>
-                <span class="num-2"></span>%
-            </div>
-        </div>
-        <!-- end brawser -->
-
-        <!-- brawser -->
-        <div class="p-6 flex flex-row justify-between items-center text-gray-600 border-b-0">
-            <div class="flex items-center">
-                <i class="fab fa-safari mr-4"></i>
-                <h1>safari</h1>
-            </div>
-            <div>
-                <span class="num-2"></span>%
-            </div>
-        </div>
-        <!-- end brawser -->
-
-    </div>
-    <!-- end Browser Stats -->
-
-    <!-- Start Recent Sales -->
-    <div class="card col-span-2 xl:col-span-1">
-        <div class="card-header">Recent Sales</div>
-
-        <table class="table-auto w-full text-left">
-            <thead>
-                <tr>
-                    <th class="px-4 py-2 border-r"></th>
-                    <th class="px-4 py-2 border-r">product</th>
-                    <th class="px-4 py-2 border-r">price</th>
-                    <th class="px-4 py-2">date</th>
-                </tr>
-            </thead>
-            <tbody class="text-gray-600">
-
-                <tr>
-                    <td class="border border-l-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 px-4 py-2">Lightning to USB-C Adapter Lightning.</td>
-                    <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-                <tr>
-                    <td class="border border-l-0 px-4 py-2 text-center text-yellow-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 px-4 py-2">Apple iPhone 8.</td>
-                    <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-                <tr>
-                    <td class="border border-l-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 px-4 py-2">Apple MacBook Pro.</td>
-                    <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-                <tr>
-                    <td class="border border-l-0 px-4 py-2 text-center text-red-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 px-4 py-2">Samsung Galaxy S9.</td>
-                    <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-                <tr>
-                    <td class="border border-l-0 px-4 py-2 text-center text-yellow-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 px-4 py-2">Samsung Galaxy S8 256GB.</td>
-                    <td class="border border-l-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-                <tr>
-                    <td class="border border-l-0 border-b-0 px-4 py-2 text-center text-green-500"><i class="fad fa-circle"></i></td>
-                    <td class="border border-l-0 border-b-0 px-4 py-2">apple watch.</td>
-                    <td class="border border-l-0 border-b-0 px-4 py-2">$<span class="num-2"></span></td>
-                    <td class="border border-l-0 border-b-0 border-r-0 px-4 py-2"><span class="num-2"></span> minutes ago</td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
-    <!-- End Recent Sales -->
 
 
 </div>

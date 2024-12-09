@@ -20,40 +20,43 @@
 
 <!-- Tabel Data Pelanggan -->
 <div class="card col-span-2 xl:col-span-1">
-    <div class="card-header">Data Pelanggan</div>
+    <div class="card-header bg-success text-white">Data Pelanggan</div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr class="text-center">
-                <th>No</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>No HP</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($penggunas as $index => $pengguna)
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-success text-center">
                 <tr>
-                    <td>{{ $penggunas->firstItem() + $index }}</td>
-                    <td>{{ $pengguna->username }}</td>
-                    <td>{{ $pengguna->email }}</td>
-                    <td>{{ $pengguna->nohp }}</td>
-                    <td class="text-center">
-                        {{-- <a href="/admin-pengguna/{{ $pengguna->id }}/edit" title="Edit Data" class="btn btn-warning btn-sm me-2"><i class="bi bi-pencil-square"></i> Edit</a> --}}
-                        <form action="/admin-pelanggan/{{ $pengguna->id }}" method="post" class="d-inline">
-                            @method('DELETE')
-                            @csrf
-                            <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')"><i class="bi bi-trash"></i> Hapus</button>
-                        </form>
-                    </td>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>No HP</th>
+                    <th>Aksi</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($penggunas as $index => $pengguna)
+                    <tr>
+                        <td>{{ $penggunas->firstItem() + $index }}</td>
+                        <td>{{ $pengguna->username }}</td>
+                        <td>{{ $pengguna->email }}</td>
+                        <td>{{ $pengguna->nohp }}</td>
+                        <td class="text-center">
+                            <form action="/admin-pelanggan/{{ $pengguna->id }}" method="post" class="d-inline">
+                                @method('DELETE')
+                                @csrf
+                                <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')"><i class="bi bi-trash"></i> Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
+<!-- Pagination -->
 <div class="d-flex justify-content-center">
     {{ $penggunas->links() }}
 </div>
 @endsection
+

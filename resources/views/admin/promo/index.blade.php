@@ -28,7 +28,7 @@
 <!-- Tabel Promo Berlaku -->
 @if(request('tab') !== 'habis')
 <div class="card mb-3">
-    <div class="card-header">Promo Berlaku</div>
+    <div class="card-header bg-success text-white">Promo Berlaku</div>
     <table class="table table-bordered">
         <thead>
             <tr class="text-center">
@@ -77,7 +77,7 @@
 <!-- Tabel Promo Habis -->
 @if(request('tab') === 'habis')
 <div class="card">
-    <div class="card-header">Promo Habis</div>
+    <div class="card-header bg-danger text-white">Promo Habis</div>
     <table class="table table-bordered">
         <thead>
             <tr class="text-center">
@@ -124,3 +124,31 @@
 @endif
 
 @endsection
+
+<style>
+    .table th, .table td {
+        text-align: center; /* Menyelaraskan teks ke tengah */
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa; /* Menambahkan efek hover pada baris tabel */
+    }
+    .table-bordered {
+        border: 1px solid #ddd; /* Menambahkan border pada tabel */
+    }
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #ddd; /* Border pada sel tabel */
+    }
+    .table-success {
+        background-color: #28a745 !important; /* Mengganti warna header menjadi hijau */
+        color: white; /* Teks header putih */
+    }
+    .table-danger {
+        background-color: #dc3545 !important; /* Mengganti warna header menjadi merah */
+        color: white; /* Teks header putih */
+    }
+    .card-header {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+</style>

@@ -25,63 +25,68 @@
 
 <!-- Tabel Produk -->
 <div class="card col-span-2 xl:col-span-1">
-    <div class="card-header">Produk</div>
+    <div class="card-header bg-success text-white">Produk</div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr class="text-center">
-                <th>No</th>
-                <th>Produk</th>
-                <th>Harga</th>
-                <th>Masa Tahan</th>
-                <th>Gambar</th>
-                <th>Kategori</th>
-                <th>Keterangan</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-success text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Masa Tahan</th>
+                    <th>Gambar</th>
+                    <th>Kategori</th>
+                    <th>Keterangan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
 
-        <tbody>
-            @foreach($produks as $produk)
-            <tr>
-                <td>{{ $produks->firstItem() + $loop->index }}</td>
-                <td>{{ $produk->nama }}</td>
-                <td>{{ $produk->harga }}</td>
-                <td>{{ $produk->masa_tahan }}</td>
-                <td>
-                    <img src="{{ asset('images/' . $produk->gambar) }}" class="tab-image" alt="{{ $produk->nama }}">
-                </td>
-                <td>{{ $produk->kategori->nama_kategori }}</td>
-                <td>{{ $produk->keterangan }}</td>
-                <td class="text-center">
-                    <a href="/admin-produk/{{ $produk->id }}/edit" title="Edit Data" class="btn btn-warning btn-sm me-2">
-                        <i class="bi bi-pencil-square"></i> Edit
-                    </a>
-                    <form action="/admin-produk/{{ $produk->id }}" method="post" class="d-inline">
-                        @method('DELETE')
-                        @csrf
-                        <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
-                            <i class="bi bi-trash"></i> Hapus
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-
-        </tbody>
-    </table>
+            <tbody>
+                @foreach($produks as $produk)
+                <tr>
+                    <td>{{ $produks->firstItem() + $loop->index }}</td>
+                    <td>{{ $produk->nama }}</td>
+                    <td>Rp{{ number_format($produk->harga, 0, ',', '.') }}</td>
+                    <td>{{ $produk->masa_tahan }}</td>
+                    <td>
+                        <img src="{{ asset('images/' . $produk->gambar) }}" class="tab-image rounded" alt="{{ $produk->nama }}">
+                    </td>
+                    <td>
+                        <span class="badge bg-primary">{{ $produk->kategori->nama_kategori }}</span>
+                    </td>
+                    <td>{{ $produk->keterangan }}</td>
+                    <td class="text-center">
+                        <a href="/admin-produk/{{ $produk->id }}/edit" title="Edit Data" class="btn btn-warning btn-sm me-2">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <form action="/admin-produk/{{ $produk->id }}" method="post" class="d-inline">
+                            @method('DELETE')
+                            @csrf
+                            <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
+                                <i class="bi bi-trash"></i> Hapus
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Pagination -->
 <div class="d-flex justify-content-center">
     {{ $produks->links() }}
 </div>
+
 @endsection
 
 <style>
     .tab-image {
-        width: 100px;
-        height: auto;
+        width: 50px; /* Lebar gambar lebih kecil */
+        height: 50px; /* Tinggi gambar lebih kecil */
         object-fit: cover;
     }
 </style>
+

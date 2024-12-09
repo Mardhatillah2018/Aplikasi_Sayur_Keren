@@ -45,9 +45,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-pembelian') ? 'active' : '' }}" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-penjualan') ? 'active' : '' }}" href="/admin-penjualan">
                         <i class="bi bi-cart-fill"></i>
-                        Pembelian
+                        Penjualan
                     </a>
                 </li>
                 <li class="nav-item">

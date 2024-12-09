@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BatchStokController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
@@ -9,9 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PengantarController;
 use App\Http\Controllers\PengelolaController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RiwayatBelanjaController;
 use App\Http\Controllers\StokController;
@@ -50,7 +53,9 @@ Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
 });
 
 // Rute untuk jumlah produk (misalnya: /dashboard/produk)
-Route::get('/dashboard', [ProdukController::class, 'jumlahProduk'])->name('dashboard.produk')->middleware(['auth', 'role:admin']);
+// Route::get('/dashboard', [ProdukController::class, 'jumlahProduk'])->name('dashboard.produk')->middleware(['auth', 'role:admin']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(['auth', 'role:admin']);
+
 
 Route::get('/semuaproduk', function () {
     // Ambil semua produk beserta stoknya
@@ -147,5 +152,7 @@ Route::get('/pesanan-masuk', function () {
 })->middleware(['auth', 'role:pengantar']);
 
 Route::post('/riwayat-belanja/{id}/ulasan', [RiwayatBelanjaController::class, 'simpanUlasan'])->name('riwayatBelanja.simpanUlasan');
+
+Route::resource('/admin-penjualan', PenjualanController::class)->middleware(['auth', 'role:admin']);
 
 
