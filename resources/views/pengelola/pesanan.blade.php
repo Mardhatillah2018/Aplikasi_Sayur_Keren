@@ -55,11 +55,11 @@
                                 @method('PUT')
                                 <!-- Tombol atas -->
                                 <div class="d-flex gap-1">
-                                    <button type="submit" name="status" value="pesanan diterima"
+                                    {{-- <button type="submit" name="status" value="pesanan diterima"
                                         class="btn btn-sm {{ $checkout->status == 'pesanan diterima' ? 'btn-primary' : 'btn-outline-primary' }} {{ in_array($checkout->status, ['diproses', 'dikirim', 'selesai']) ? 'disabled' : '' }} "
                                         title="Diterima">
                                         <i class="fas fa-check-circle"></i>
-                                    </button>
+                                    </button> --}}
                                     <button type="submit" name="status" value="diproses"
                                         class="btn btn-sm {{ $checkout->status == 'diproses' ? 'btn-warning' : 'btn-outline-warning' }} {{ in_array($checkout->status, ['dikirim', 'selesai']) ? 'disabled' : '' }}"
                                         title="Diproses">
@@ -73,12 +73,12 @@
                                         title="Dikirim">
                                         <i class="fas fa-shipping-fast"></i>
                                     </button>
-                                    <button type="submit" name="status" value="selesai"
+                                    {{-- <button type="submit" name="status" value="selesai"
                                         class="btn btn-sm {{ $checkout->status == 'selesai' ? 'btn-success' : 'btn-outline-success' }} "
                                         {{ $checkout->status == 'selesai' ? 'disabled' : '' }}
                                         title="Selesai">
                                         <i class="fas fa-check"></i>
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </form>
                         </td>

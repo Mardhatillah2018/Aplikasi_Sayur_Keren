@@ -24,20 +24,44 @@ class CheckoutController extends Controller
 
     public function showPesanan()
     {
-        $checkouts = Checkout::latest()->paginate(10); // Gunakan paginate untuk mendukung pagination
+        // Memfilter pesanan yang statusnya bukan 'dikirim' atau 'selesai'
+        $checkouts = Checkout::whereNotIn('status', ['dikirim', 'selesai'])
+                            ->latest() // Menampilkan berdasarkan urutan terbaru
+                            ->paginate(10); // Menggunakan paginate untuk mendukung pagination
+
         return view('pengelola.pesanan', compact('checkouts')); // Kirim data ke view
     }
 
+
+    // Menampilkan daftar pesanan untuk pengantar
+    public function showPesananPengantar()
+    {
+        // Ambil pesanan dengan status 'dikirim' dan urutkan berdasarkan waktu terbaru
+        $checkouts = Checkout::where('status', 'dikirim')
+                            ->with('pengguna') // Memuat relasi pengguna agar kita bisa mengambil nohp
+                            ->latest()
+                            ->paginate(10); // Gunakan paginate untuk mendukung pagination
+
+        // Kirimkan data ke view 'pengantar.listpesanan'
+        return view('pengantar.pesananMasuk', compact('checkouts'));
+    }
+
+
     // Konfirmasi pesanan
     public function confirm(Request $request, $id)
-    {
-        $checkout = Checkout::findOrFail($id);
-        $checkout->status = 'diproses'; // Update status ke 'diproses'
-        $checkout->catatan_admin = $request->input('catatan_admin'); // Opsional
-        $checkout->save();
+   {
+       $checkout = Checkout::findOrFail($id);
+       $checkout->status = 'diproses'; // Update status ke 'diproses'
+       $checkout->catatan_admin = $request->input('catatan_admin'); // Opsional
+       $checkout->save();
 
-        return redirect()->route('pengelola.pesanan')->with('success', 'Pesanan berhasil dikonfirmasi.');
-    }
+       // Logika untuk mengarahkan ke rute berbeda jika diperlukan
+       if ($request->user()->role === 'pengelola') {
+           return redirect()->route('pengelola.pesanan')->with('success', 'Pesanan berhasil dikonfirmasi.');
+       } elseif ($request->user()->role === 'pengantar') {
+           return redirect()->route('pengantar.pesanan-masuk')->with('success', 'Pesanan berhasil dikonfirmasi.');
+       }
+   }
 
     //update status pesanan
     public function updateStatus(Request $request, $id)

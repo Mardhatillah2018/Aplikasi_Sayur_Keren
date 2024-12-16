@@ -95,7 +95,7 @@
 </head>
 
 <body>
-    @include('pengelola.layouts.header')
+    @include('pengantar.layouts.header')
 
     <div class="content-wrapper">
         <main class="content">
