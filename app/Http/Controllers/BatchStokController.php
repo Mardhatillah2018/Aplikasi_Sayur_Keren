@@ -13,7 +13,7 @@ use Illuminate\Queue\Console\BatchesTableCommand;
 class BatchStokController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan list batch stok
      */
     public function index(Request $request)
     {
@@ -21,7 +21,7 @@ class BatchStokController extends Controller
 
         $batchStoks = BatchStok::when($produkId, function ($query, $produkId) {
             return $query->where('produk_id', $produkId);
-        })->paginate(10); // Gunakan paginate di sini
+        })->latest()->paginate(10); // untuk menampilkan 10 data per halaman
 
         return view('admin.batchStok.index', compact('batchStoks'));
     }
@@ -30,7 +30,7 @@ class BatchStokController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan halaman tambah
      */
     public function create()
     {
@@ -38,7 +38,7 @@ class BatchStokController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Simpan data
      */
     public function store(Request $request)
     {
@@ -66,16 +66,18 @@ class BatchStokController extends Controller
      * Display the specified resource.
      */
 
-    public function show($id)
-    {
-        $batchStoks = BatchStok::where('produk_id', $id)->paginate(10); // Tambahkan paginate
-        return view('admin.batchStok.index', compact('batchStoks'));
-    }
-
+     public function show($id)
+     {
+         $batchStoks = BatchStok::where('produk_id', $id)
+                                ->where('jumlah', '>', 0) // Menggunakan kolom jumlah
+                                ->latest()
+                                ->paginate(10); // Menambahkan paginate
+         return view('admin.batchStok.index', compact('batchStoks'));
+     }
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan halaman edit
      */
     public function edit($id)
     {
@@ -88,45 +90,42 @@ class BatchStokController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
+     * Untuk update data yang sudah di edit
      */
     public function update(Request $request, string $id)
-{
-    $validated = $request->validate([
-        'jumlah' => 'required|integer',
-    ]);
-
-    $batchStok = BatchStok::findOrFail($id);
-
-    // Ambil produk yang terkait dengan batch stok
-    $produk = Produk::findOrFail($batchStok->produk_id);
-
-    // Hitung selisih antara jumlah baru dan jumlah lama batch stok
-    $selisih = $validated['jumlah'] - $batchStok->jumlah;
-
-    // Update batch stok
-    $batchStok->update($validated);
-
-    // Cari stok produk terkait
-    $stok = Stok::where('produk_id', $produk->id)->first();
-
-    if ($stok) {
-        $stok->jumlah += $selisih;
-        $stok->save();
-    } else {
-        Stok::create([
-            'produk_id' => $produk->id,
-            'jumlah' => $validated['jumlah'],
+    {
+        $validated = $request->validate([
+            'jumlah' => 'required|integer',
         ]);
+
+        $batchStok = BatchStok::findOrFail($id);
+
+        // Ambil produk yang terkait dengan batch stok
+        $produk = Produk::findOrFail($batchStok->produk_id);
+
+        // Hitung selisih antara jumlah baru dan jumlah lama batch stok
+        $selisih = $validated['jumlah'] - $batchStok->jumlah;
+
+        // Update batch stok
+        $batchStok->update($validated);
+
+        // Cari stok produk terkait
+        $stok = Stok::where('produk_id', $produk->id)->first();
+
+        if ($stok) {
+            $stok->jumlah += $selisih;
+            $stok->save();
+        } else {
+            Stok::create([
+                'produk_id' => $produk->id,
+                'jumlah' => $validated['jumlah'],
+            ]);
+        }
+
+        // Redirect ke halaman batch stok berdasarkan produk ID
+        return redirect('/admin-batchStok?produk_id=' . $produk->id)
+            ->with('success', 'Stok berhasil diperbarui');
     }
-
-    // Redirect ke halaman batch stok berdasarkan produk ID
-    return redirect('/admin-batchStok?produk_id=' . $produk->id)
-        ->with('success', 'Stok berhasil diperbarui');
-}
-
-
-
 
 
     /**

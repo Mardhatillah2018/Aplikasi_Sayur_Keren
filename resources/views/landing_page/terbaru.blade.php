@@ -1,23 +1,7 @@
 @extends('layouts.main')
-
 @section('content')
 
-<h5 class="mt-5 d-flex justify-content-between align-items-center">
-    Semua Produk
-    <!-- Dropdown Filter -->
-    <form action="{{ route('semuaproduk') }}" method="GET" class="d-flex align-items-center">
-        <select name="kategori" class="form-select custom-select" onchange="this.form.submit()">
-            <option value="" class="placeholder">Semua Kategori</option>
-            @foreach($kategoris as $kategori)
-                <option value="{{ $kategori->id }}"
-                    {{ request('kategori') == $kategori->id ? 'selected' : '' }}>
-                    {{ $kategori->nama_kategori }}
-                </option>
-            @endforeach
-        </select>
-    </form>
-</h5>
-
+    <h5 class="mt-5">Produk Terbaru</h5>
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
@@ -209,44 +193,5 @@
     });
 </script>
 
-<style>
-    .custom-select {
-    background-color: #f8f9fa; /* Latar belakang cerah */
-    border: 2px solid #0e6336; /* Border berwarna biru */
-    border-radius: 5px; /* Membuat sudut lebih bulat */
-    padding: 8px 15px; /* Memberikan jarak pada dalam dropdown */
-    font-size: 16px; /* Ukuran font yang lebih besar */
-    color: #333; /* Warna teks */
-    transition: background-color 0.3s, border-color 0.3s; /* Animasi transisi warna */
-    appearance: none; /* Menghilangkan gaya default dropdown di beberapa browser */
-    cursor: pointer; /* Menambahkan kursor pointer agar lebih interaktif */
-}
-
-.custom-select:focus {
-    outline: none;
-    border-color: #0e6336; /* Border lebih gelap saat dropdown dipilih */
-    background-color: #e9ecef; /* Latar belakang lebih terang saat fokus */
-}
-
-.placeholder {
-    color: #6c757d; /* Warna teks placeholder */
-}
-
-.custom-select option {
-    background-color: #fff; /* Latar belakang pilihan opsi */
-    padding: 8px 15px;
-    transition: background-color 0.3s; /* Animasi transisi warna saat hover */
-}
-
-.custom-select option:hover {
-    background-color: #f1f1f1; /* Warna saat hover pada opsi */
-}
-
-.custom-select option:checked {
-    background-color: #0e6336; /* Latar belakang pilihan terpilih */
-    color: #fff; /* Warna teks pilihan terpilih */
-}
-
-</style>
-
 @endsection
+

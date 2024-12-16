@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Checkout;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\Log;
 
 class PenjualanController extends Controller
 {
@@ -24,4 +26,43 @@ class PenjualanController extends Controller
 
         return view('admin.admin-penjualan.detailPenjualan', compact('checkout'));
     }
+
+    public function cetakPdf(Request $request)
+{
+    Log::info('Masuk ke metode cetakPdf');
+
+    $tahun = $request->input('tahun');
+    $bulan = $request->input('bulan');
+
+    // Validasi input
+    if (!$tahun || !$bulan) {
+        return redirect()->back()->with('error', 'Tahun dan bulan harus dipilih.');
+    }
+
+    // Ambil data penjualan berdasarkan tahun dan bulan
+    $checkouts = Checkout::whereYear('tanggal_pemesanan', $tahun)
+        ->whereMonth('tanggal_pemesanan', $bulan)
+        ->where('status', 'selesai')
+        ->get();
+
+    // Jika data tidak ditemukan
+    if ($checkouts->isEmpty()) {
+        return redirect()->back()->with('error', 'Tidak ada data penjualan pada bulan dan tahun yang dipilih.');
+    }
+
+    // Log untuk memastikan data yang diambil
+    Log::info('Data Checkouts: ', $checkouts->toArray());
+
+    // Generate PDF menggunakan view
+    $pdf = PDF::loadView('admin.admin-penjualan.cetakPdf', [
+        'checkouts' => $checkouts,
+        'tahun' => $tahun,
+        'bulan' => $bulan,
+    ]);
+
+    // Tampilkan PDF di browser
+    return $pdf->stream("Laporan_Penjualan_{$tahun}_{$bulan}.pdf");
+}
+
+
 }

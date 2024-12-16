@@ -28,9 +28,9 @@
                     <thead class="table-success text-center">
                         <tr>
                             <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Jumlah Stok</th>
                             <th>Tanggal Kadaluarsa</th>
+                            {{-- <th>Nama Produk</th> --}}
+                            <th>Jumlah Stok</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,9 +38,9 @@
                         @foreach ($batchStoks as $index => $batchStok)
                         <tr>
                             <td>{{ $batchStoks->firstItem() + $index }}</td>
-                            <td>{{ $batchStok->produk->nama }}</td>
-                            <td>{{ $batchStok->jumlah }}</td>
                             <td>{{ $batchStok->tgl_kadaluarsa }}</td>
+                            {{-- <td>{{ $batchStok->produk->nama }}</td> --}}
+                            <td>{{ $batchStok->jumlah }}</td>
                             <td class="text-center">
                                 <!-- Tombol Edit -->
                                 <a href="/admin-batchStok/{{ $batchStok->id }}/edit" title="Edit Data" class="btn btn-warning btn-sm">
@@ -57,7 +57,7 @@
 
     <!-- Tombol Kembali dan Pagination -->
     <div class="d-flex justify-content-between mt-3">
-        <a href="/admin-stok" class="btn btn-primary" style="background-color: #0B773D; border-color: #0B773D;">Kembali</a>
+        <a href="/admin-stok" class="btn btn-secondary">Kembali</a>
         {{ $batchStoks->links() }}
     </div>
 </div>

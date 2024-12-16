@@ -24,7 +24,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary" style="background-color: #0B773D; border-color: #0B773D;">Update</button>
+            <button type="submit" class="btn btn-success" style="background-color: #0B773D; border-color: #0B773D;">Update</button>
         </form>
     </div>
 </div>

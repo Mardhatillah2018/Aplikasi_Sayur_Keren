@@ -3,6 +3,7 @@
 use App\Http\Controllers\BatchStokController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
@@ -20,31 +21,8 @@ use App\Http\Controllers\RiwayatBelanjaController;
 use App\Http\Controllers\StokController;
 use App\Models\Produk;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Route::get('/dashboard', function () {
-//     return view('admin.dashboard');
-// });
-
-// // Rute untuk dashboard
-// Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard.index');
-//     })->name('dashboard.index');
-// });
-// Route::get('/dashboard', [ProdukController::class, 'jumlahProduk'])->name('dashboard');
-
-// Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
-//     Route::get('/dashboard', [ProdukController::class, 'jumlahProduk'])->name('dashboard.index');
-// });
 
 Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', function () {
@@ -57,13 +35,15 @@ Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(['auth', 'role:admin']);
 
 
-Route::get('/semuaproduk', function () {
-    // Ambil semua produk beserta stoknya
-    $produks = Produk::with('stok')->get();
-    // Kirim data ke view
-    return view('landing_page.semuaproduk', compact('produks'));
-});
+// Route::get('/semuaproduk', function () {
+//     // Ambil semua produk beserta stoknya
+//     $produks = Produk::with('stok')->get();
+//     // Kirim data ke view
+//     return view('landing_page.semuaproduk', compact('produks'));
+// });
 
+Route::get('/semuaproduk', [FrontendController::class, 'index'])->name('semuaproduk');
+Route::get('/semuaproduk/search', [FrontendController::class, 'search'])->name('frontend.search');
 
 Route::get('/promo', function () {
     return view('landing_page.promo');
@@ -73,10 +53,14 @@ Route::get('/terlaris', function () {
     return view('landing_page.terlaris');
 });
 
-Route::get('/kategori', function () {
-    return view('landing_page.kategori');
-});
-// Route::get('/kategori', [KategoriController::class, 'index']);
+// Route::get('/kategori', function () {
+//     return view('landing_page.kategori');
+// });
+
+// Route::get('/terbaru', function () {
+//     return view('landing_page.terbaru');
+// });
+Route::get('/terbaru', [FrontendController::class, 'terbaru']);
 
 
 Route::get('/register', [RegisterController::class, 'index']);
@@ -154,5 +138,9 @@ Route::get('/pesanan-masuk', function () {
 Route::post('/riwayat-belanja/{id}/ulasan', [RiwayatBelanjaController::class, 'simpanUlasan'])->name('riwayatBelanja.simpanUlasan');
 
 Route::resource('/admin-penjualan', PenjualanController::class)->middleware(['auth', 'role:admin']);
+Route::get('/admin-penjualan/cetak-pdf', [PenjualanController::class, 'cetakPdf'])->name('admin-penjualan.cetakPdf');
+
+
+
 
 

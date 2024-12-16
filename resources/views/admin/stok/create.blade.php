@@ -38,7 +38,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
                 <a href="{{ route('admin-stok.index') }}" class="btn btn-secondary ms-2">Kembali</a>
             </form>
         </div>
