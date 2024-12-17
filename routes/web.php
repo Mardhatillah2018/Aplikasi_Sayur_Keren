@@ -109,7 +109,9 @@ Route::post('/upload-bukti/{id}', [RiwayatBelanjaController::class, 'uploadBukti
 
 //PENJUALAN
 Route::resource('/admin-penjualan', PenjualanController::class)->middleware(['auth', 'role:admin']);
-Route::get('/admin-penjualan/cetak-pdf', [PenjualanController::class, 'cetakPdf'])->name('admin-penjualan.cetakPdf');
+//Route::get('/admin-penjualan/cetak-pdf', [PenjualanController::class, 'cetakPdf'])->name('admin-penjualan.cetakPdf');
+Route::get('/cetak-pdf/penjualan', [PenjualanController::class, 'cetakPdf']);
+
 
 // PENGELOLA
 Route::get('/pesanan', [CheckoutController::class, 'showPesanan'])->middleware(['auth', 'role:pengelola']);
