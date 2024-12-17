@@ -1,7 +1,6 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<h1></h1>
 <div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h3 text-center" style="color: #0B773D;">Input Data Kategori</h2>
 </div>

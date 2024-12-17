@@ -3,12 +3,8 @@
 @section('navAdm', 'active')
 
 @section('content')
-<div class="d-flex justify-content-between mb-3">
-    <!-- Form Pencarian -->
-    <form action="{{ url('/admin-pelanggan') }}" method="GET" class="d-flex">
-        <input type="text" name="search" class="form-control me-2" placeholder="Cari Pelanggan" value="{{ request()->input('search') }}" style="width: 250px;">
-        <button type="submit" class="btn btn-primary" style="background-color: #0B773D; border-color: #0B773D;">Cari</button>
-    </form>
+<div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3 class="h3 text-center" style="color: #0B773D; font-size: 25px;">DATA PELANGGAN</h3>
 </div>
 
 @if(session('pesan'))

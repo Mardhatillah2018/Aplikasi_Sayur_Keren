@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class PenjualanController extends Controller
@@ -64,10 +65,30 @@ class PenjualanController extends Controller
 //     return $pdf->stream("Laporan_Penjualan_{$tahun}_{$bulan}.pdf");
 // }
 
-public function cetakPdf(){
-    $pdf = PDF::loadView('admin.admin-penjualan.cetakPdf', ['checkouts' => Checkout::all()]);
+public function cetakPdf(Request $request)
+{
+    // Tangkap input tahun dan bulan
+    $tahun = $request->input('tahun');
+    $bulan = $request->input('bulan');
+
+    // Filter data berdasarkan tahun dan bulan jika ada
+    $checkouts = Checkout::when($tahun, function ($query, $tahun) {
+                        return $query->whereYear('tanggal_pemesanan', $tahun);
+                    })
+                    ->when($bulan, function ($query, $bulan) {
+                        return $query->whereMonth('tanggal_pemesanan', $bulan);
+                    })
+                    ->where('status', 'selesai') // Hanya data dengan status "selesai"
+                    ->get();
+
+    // Load view dengan data terfilter
+    $pdf = PDF::loadView('admin.admin-penjualan.cetakPdf', [
+        'checkouts' => $checkouts,
+        'tahun' => $tahun,
+        'bulan' => Carbon::create(null, $bulan, 1)->translatedFormat('F'), // Konversi nama bulan
+    ]);
+
     return $pdf->stream('Laporan-Penjualan.pdf');
-    //return $pdf->download('Laporan-Data-Mahasiswa.pdf');
 }
 
 

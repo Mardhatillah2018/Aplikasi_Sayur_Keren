@@ -12,12 +12,27 @@ class PengelolaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pengelolas = Pengguna::where('role', 'pengelola')->latest()->paginate(10);
+        // Ambil keyword pencarian dari request
+        $search = $request->input('search');
 
-        return view('admin.admin-pengelola.index', compact('pengelolas'));
+        // Query untuk mencari data pengelola
+        $pengelolas = Pengguna::where('role', 'pengelola')
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('username', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('nohp', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(10);
+
+        // Kirim hasil query dan keyword pencarian ke view
+        return view('admin.admin-pengelola.index', compact('pengelolas', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +48,7 @@ class PengelolaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required|min:3|unique:penggunas', // Validasi username unik
+            'username' => 'required|min:3', // Validasi username unik
             'email' => 'required|email|unique:penggunas', // Validasi email unik
             'nohp' => 'nullable|string', // No HP opsional
             'password' => 'required|min:4|confirmed', // Validasi konfirmasi password

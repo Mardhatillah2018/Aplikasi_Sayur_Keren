@@ -3,7 +3,9 @@
 @section('navAdm', 'active')
 
 @section('content')
-<!-- Form Pencarian dan Tombol Tambah Kategori Sejajar -->
+<div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3 class="h3 text-center" style="color: #0B773D; font-size: 25px;">DATA KATEGORI</h3>
+</div>
 <div class="d-flex justify-content-between mb-3">
     <!-- Tombol tambah kategori -->
     <a href="/admin-kategori/create" class="btn btn-primary mb-3" style="background-color: #0B773D; border-color: #0B773D; white-space: nowrap;">Tambah Kategori</a>

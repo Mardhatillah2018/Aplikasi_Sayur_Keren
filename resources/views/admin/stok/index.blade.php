@@ -3,6 +3,9 @@
 @section('navAdm', 'active')
 
 @section('content')
+<div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3 class="h3 text-center" style="color: #0B773D; font-size: 25px;">DATA STOK PRODUK</h3>
+</div>
 <!-- Pesan sukses -->
 @if(session('pesan'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

@@ -12,9 +12,21 @@ class PengantarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pengantars = Pengguna::where('role', 'pengantar')->latest()->paginate(10);
+        //ambil keyword pencarian
+        $search = $request->input('search');
+        //query mencari data pengantar
+        $pengantars = Pengguna::where('role', 'pengantar')
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('username', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('nohp', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(10);
 
         return view('admin.admin-pengantar.index', compact('pengantars'));
     }
@@ -33,7 +45,7 @@ class PengantarController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required|min:3|unique:penggunas', // Validasi username unik
+            'username' => 'required|min:3', // Validasi username unik
             'email' => 'required|email|unique:penggunas', // Validasi email unik
             'nohp' => 'nullable|string', // No HP opsional
             'password' => 'required|min:4|confirmed', // Validasi konfirmasi password
