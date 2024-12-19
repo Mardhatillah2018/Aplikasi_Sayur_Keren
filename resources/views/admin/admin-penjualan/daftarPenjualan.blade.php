@@ -35,12 +35,35 @@
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-success text-center">
                 <tr>
-                    <th>No</th>
-                    <th>Tanggal</th>
-                    <th>User ID</th>
-                    <th>Total Harga</th>
-                    <th>Alamat</th>
-                    <th>Tools</th>
+                    <th class="align-middle">No</th>
+                    <th class="align-middle">
+                        <!-- Dropdown Filter Tahun dan Bulan -->
+                        <form action="{{ route('admin-penjualan.index') }}" method="GET" id="filterForm">
+                            <div class="d-flex flex-row align-items-center justify-content-center">
+                                <select name="tahun" class="form-select form-select-sm me-2" onchange="document.getElementById('filterForm').submit();">
+                                    <option value="">Tahun</option>
+                                    @foreach(range(date('Y'), date('Y') - 10) as $year)
+                                        <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
+                                            {{ $year }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <select name="bulan" class="form-select form-select-sm" onchange="document.getElementById('filterForm').submit();">
+                                    <option value="">Bulan</option>
+                                    @for($m = 1; $m <= 12; $m++)
+                                        <option value="{{ sprintf('%02d', $m) }}" {{ request('bulan') == sprintf('%02d', $m) ? 'selected' : '' }}>
+                                            {{ date('F', mktime(0, 0, 0, $m, 1)) }}
+                                        </option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </form>
+                    </th>
+
+                    <th class="align-middle">User ID</th>
+                    <th class="align-middle">Total Harga</th>
+                    <th class="align-middle">Alamat</th>
+                    <th class="align-middle">Tools</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,4 +90,14 @@
 <div class="d-flex justify-content-center">
     {{ $checkouts->links() }}
 </div>
+
+<style>
+    .form-select-sm {
+        font-size: 12px;
+        height: auto;
+        padding: 0.2rem 0.5rem;
+        margin-bottom: 5px;
+    }
+</style>
+
 @endsection

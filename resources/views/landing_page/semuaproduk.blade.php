@@ -28,7 +28,7 @@
                 <div class="product-item position-relative">
                     <figure>
                         <a href="#" title="{{ $produk->nama }}">
-                            <img src="{{ asset('images/' . $produk->gambar) }}" class="tab-image" alt="{{ $produk->nama }}">
+                            <img src="{{ asset('images/produk/' . $produk->gambar) }}" class="tab-image" alt="{{ $produk->nama }}">
                         </a>
                     </figure>
 

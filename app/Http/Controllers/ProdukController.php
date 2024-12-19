@@ -57,7 +57,7 @@ class ProdukController extends Controller
 
         if ($request->hasFile('gambar')) {
             $imageName = time().'.'.$request->gambar->extension();
-            $request->gambar->move(public_path('images'), $imageName);
+            $request->gambar->move(public_path('images/produk'), $imageName);
             $validated['gambar'] = $imageName;
         }
 
@@ -111,12 +111,12 @@ class ProdukController extends Controller
         // Cek apakah ada gambar baru yang diunggah
         if ($request->hasFile('gambar')) {
             // Hapus gambar lama jika ada
-            if ($produk->gambar && file_exists(public_path('images/' . $produk->gambar))) {
-                unlink(public_path('images/' . $produk->gambar));
+            if ($produk->gambar && file_exists(public_path('images/produk/' . $produk->gambar))) {
+                unlink(public_path('images/produk/' . $produk->gambar));
             }
             // Simpan gambar baru
             $imageName = time() . '.' . $request->gambar->extension();
-            $request->gambar->move(public_path('images'), $imageName);
+            $request->gambar->move(public_path('images/produk'), $imageName);
             $validated['gambar'] = $imageName;
         } else {
             // Pertahankan gambar lama jika tidak ada unggahan baru

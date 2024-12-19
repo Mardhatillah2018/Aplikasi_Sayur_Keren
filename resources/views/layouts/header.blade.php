@@ -37,9 +37,10 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="/semuaproduk" class="{{ Request::is('semuaproduk') ? 'active' : '' }}">SEMUA PRODUK</a></li>
-                    <li><a href="/promo" class="{{ Request::is('promo') ? 'active' : '' }}">PROMO</a></li>
-                    <li><a href="/terlaris" class="{{ Request::is('terlaris') ? 'active' : '' }}">TERLARIS</a></li>
+                    {{-- <li><a href="/promo" class="{{ Request::is('promo') ? 'active' : '' }}">PROMO</a></li>
+                    <li><a href="/terlaris" class="{{ Request::is('terlaris') ? 'active' : '' }}">TERLARIS</a></li> --}}
                     <li><a href="/terbaru" class="{{ Request::is('terbaru') ? 'active' : '' }}">TERBARU</a></li>
+                    <li><a href="/tentang" class="{{ Request::is('tentang') ? 'active' : '' }}">TENTANG</a></li>
                     {{-- <li><a href="/kategori" class="{{ Request::is('kategori') ? 'active' : '' }}">KATEGORI</a></li> --}}
                 </ul>
             </nav>

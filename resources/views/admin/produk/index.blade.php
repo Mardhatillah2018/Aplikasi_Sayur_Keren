@@ -53,7 +53,7 @@
                     <td>Rp{{ number_format($produk->harga, 0, ',', '.') }}</td>
                     <td>{{ $produk->masa_tahan }}</td>
                     <td>
-                        <img src="{{ asset('images/' . $produk->gambar) }}" class="tab-image rounded" alt="{{ $produk->nama }}">
+                        <img src="{{ asset('images/produk/' . $produk->gambar) }}" class="tab-image rounded" alt="{{ $produk->nama }}">
                     </td>
                     <td>
                         <span class="badge bg-primary">{{ $produk->kategori->nama_kategori }}</span>

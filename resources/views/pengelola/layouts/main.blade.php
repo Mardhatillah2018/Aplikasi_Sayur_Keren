@@ -58,13 +58,12 @@
         .content-wrapper {
             display: flex;
             justify-content: center;
-            align-items: center;
             min-height: calc(100vh - 100px); /* Sesuaikan tinggi viewport, dikurangi margin header */
-            margin-top: 100px; /* Untuk jarak antara header dan konten */
+            margin-top: 80px; /* Untuk jarak antara header dan konten */
         }
 
         .content {
-            max-width: 800px; /* Sesuaikan lebar konten */
+            max-width: 1200px; /* Sesuaikan lebar konten */
             width: 100%; /* Agar responsif */
             text-align: center; /* Konten rata tengah */
         }

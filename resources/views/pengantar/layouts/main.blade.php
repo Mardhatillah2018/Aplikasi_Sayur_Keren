@@ -35,7 +35,7 @@
         }
 
         .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
+            --bd-violet-bg: #116618;
             --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
             --bs-btn-font-weight: 600;
@@ -43,12 +43,12 @@
             --bs-btn-bg: var(--bd-violet-bg);
             --bs-btn-border-color: var(--bd-violet-bg);
             --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-hover-bg: #116618;
+            --bs-btn-hover-border-color: #116618;
             --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
             --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
+            --bs-btn-active-bg: #116618;
+            --bs-btn-active-border-color: #116618;
         }
 
         .bd-mode-toggle {
@@ -58,13 +58,13 @@
         .content-wrapper {
             display: flex;
             justify-content: center;
-            align-items: center;
+
             min-height: calc(100vh - 100px); /* Sesuaikan tinggi viewport, dikurangi margin header */
-            margin-top: 100px; /* Untuk jarak antara header dan konten */
+            margin-top: 80px; /* Untuk jarak antara header dan konten */
         }
 
         .content {
-            max-width: 800px; /* Sesuaikan lebar konten */
+            max-width: 1200px; /* Sesuaikan lebar konten */
             width: 100%; /* Agar responsif */
             text-align: center; /* Konten rata tengah */
         }

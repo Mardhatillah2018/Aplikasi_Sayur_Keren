@@ -35,13 +35,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/semuaproduk', [FrontendController::class, 'index'])->name('semuaproduk');
 Route::get('/semuaproduk/search', [FrontendController::class, 'search'])->name('frontend.search');
 
-Route::get('/promo', function () {
-    return view('landing_page.promo');
-});
+// Route::get('/promo', function () {
+//     return view('landing_page.promo');
+// });
 
-Route::get('/terlaris', function () {
-    return view('landing_page.terlaris');
-});
+// Route::get('/terlaris', function () {
+//     return view('landing_page.terlaris');
+// });
 
 // Route::get('/kategori', function () {
 //     return view('landing_page.kategori');
@@ -51,6 +51,10 @@ Route::get('/terlaris', function () {
 //     return view('landing_page.terbaru');
 // });
 Route::get('/terbaru', [FrontendController::class, 'terbaru']);
+
+Route::get('/tentang', function () {
+    return view('landing_page.tentang');
+});
 
 
 Route::get('/register', [RegisterController::class, 'index']);

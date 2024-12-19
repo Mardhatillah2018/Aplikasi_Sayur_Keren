@@ -10,15 +10,34 @@ use Illuminate\Support\Facades\Log;
 
 class PenjualanController extends Controller
 {
-    public function index()
-    {
-        // Mengambil data checkout dengan status 'selesai'
-        $checkouts = Checkout::where('status', 'selesai')
-            ->select('id', 'user_id', 'alamat_pengiriman', 'total_harga', 'tanggal_pemesanan', 'status')
-            ->paginate(10); // Dengan pagination
+    public function index(Request $request)
+{
+    // Ambil parameter tahun dan bulan dari request
+    $tahun = $request->input('tahun');
+    $bulan = $request->input('bulan');
 
-        return view('admin.admin-penjualan.daftarPenjualan', compact('checkouts'));
+    // Query checkout dengan status 'selesai'
+    $query = Checkout::where('status', 'selesai')
+        ->select('id', 'user_id', 'alamat_pengiriman', 'total_harga', 'tanggal_pemesanan', 'status');
+
+    // Filter berdasarkan tahun jika dipilih
+    if ($tahun) {
+        $query->whereYear('tanggal_pemesanan', $tahun);
     }
+
+    // Filter berdasarkan bulan jika dipilih
+    if ($bulan) {
+        $query->whereMonth('tanggal_pemesanan', $bulan);
+    }
+
+    // Eksekusi query dengan pagination
+    $checkouts = $query->latest()->paginate(10);
+
+    // Kirim data ke view
+    return view('admin.admin-penjualan.daftarPenjualan', compact('checkouts', 'tahun', 'bulan'));
+}
+
+
 
     public function show($id)
     {
@@ -28,44 +47,7 @@ class PenjualanController extends Controller
         return view('admin.admin-penjualan.detailPenjualan', compact('checkout'));
     }
 
-//     public function cetakPdf(Request $request)
-// {
-//     Log::info('Masuk ke metode cetakPdf');
-
-//     $tahun = $request->input('tahun');
-//     $bulan = $request->input('bulan');
-
-//     // Validasi input
-//     if (!$tahun || !$bulan) {
-//         return redirect()->back()->with('error', 'Tahun dan bulan harus dipilih.');
-//     }
-
-//     // Ambil data penjualan berdasarkan tahun dan bulan
-//     $checkouts = Checkout::whereYear('tanggal_pemesanan', $tahun)
-//         ->whereMonth('tanggal_pemesanan', $bulan)
-//         ->where('status', 'selesai')
-//         ->get();
-
-//     // Jika data tidak ditemukan
-//     if ($checkouts->isEmpty()) {
-//         return redirect()->back()->with('error', 'Tidak ada data penjualan pada bulan dan tahun yang dipilih.');
-//     }
-
-//     // Log untuk memastikan data yang diambil
-//     Log::info('Data Checkouts: ', $checkouts->toArray());
-
-//     // Generate PDF menggunakan view
-//     $pdf = PDF::loadView('admin.admin-penjualan.cetakPdf', [
-//         'checkouts' => $checkouts,
-//         'tahun' => $tahun,
-//         'bulan' => $bulan,
-//     ]);
-
-//     // Tampilkan PDF di browser
-//     return $pdf->stream("Laporan_Penjualan_{$tahun}_{$bulan}.pdf");
-// }
-
-public function cetakPdf(Request $request)
+    public function cetakPdf(Request $request)
 {
     // Tangkap input tahun dan bulan
     $tahun = $request->input('tahun');
@@ -73,23 +55,35 @@ public function cetakPdf(Request $request)
 
     // Filter data berdasarkan tahun dan bulan jika ada
     $checkouts = Checkout::when($tahun, function ($query, $tahun) {
-                        return $query->whereYear('tanggal_pemesanan', $tahun);
-                    })
-                    ->when($bulan, function ($query, $bulan) {
-                        return $query->whereMonth('tanggal_pemesanan', $bulan);
-                    })
-                    ->where('status', 'selesai') // Hanya data dengan status "selesai"
-                    ->get();
+                            return $query->whereYear('tanggal_pemesanan', $tahun);
+                        })
+                        ->when($bulan, function ($query, $bulan) {
+                            return $query->whereMonth('tanggal_pemesanan', $bulan);
+                        })
+                        ->where('status', 'selesai') // Hanya data dengan status "selesai"
+                        ->get();
 
-    // Load view dengan data terfilter
+    // Jika tidak ada penjualan, tampilkan pesan
+    $message = $checkouts->isEmpty() ? 'Maaf, penjualan tidak tersedia.' : null;
+
+    // Konversi nama bulan
+    $namaBulan = $bulan ? Carbon::create(null, $bulan)->translatedFormat('F') : 'Semua Bulan';
+
+    // Hitung total penjualan
+    $totalPenjualan = $checkouts->sum('total_harga');
+
+    // Load view dengan data terfilter untuk PDF
     $pdf = PDF::loadView('admin.admin-penjualan.cetakPdf', [
         'checkouts' => $checkouts,
-        'tahun' => $tahun,
-        'bulan' => Carbon::create(null, $bulan, 1)->translatedFormat('F'), // Konversi nama bulan
+        'tahun' => $tahun ?: 'Semua Tahun',
+        'bulan' => $namaBulan,
+        'message' => $message,
+        'totalPenjualan' => $totalPenjualan, // Kirim total penjualan ke view
     ]);
 
     return $pdf->stream('Laporan-Penjualan.pdf');
 }
+
 
 
 }

@@ -23,7 +23,7 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ asset('images/' . $keranjang->produk->gambar) }}" alt="{{ $keranjang->produk->nama }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
+                                                <img src="{{ asset('images/produk/' . $keranjang->produk->gambar) }}" alt="{{ $keranjang->produk->nama }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
                                                 <div class="ms-3">
                                                     <h6 class="mb-0">{{ $keranjang->produk->nama }}</h6>
                                                     <small class="text-muted">Harga: Rp {{ number_format($keranjang->harga, 2) }}</small><br>

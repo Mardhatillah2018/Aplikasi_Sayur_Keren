@@ -57,9 +57,13 @@
             margin-top: 20px;
         }
         @page {
-            size: A4;
-            margin: 15mm;
+            size: A4 landscape;
+            margin-left: 5mm;
+            margin-right: 5mm;
+            margin-top: 5mm;
+            margin-bottom: 5mm;
         }
+
         @media print {
             .container {
                 page-break-inside: avoid;
@@ -68,32 +72,71 @@
         .text-center {
             text-align: center;
         }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 120px;
+            height: auto;
+        }
+        .header-info {
+            text-align: right;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center">Laporan Penjualan</h2>
-        <table class="table table-bordered">
-            <tr>
-                <th>No</th>
-                <th>Tanggal Pemesanan</th>
-                <th>User ID</th>
-                <th>Total Harga</th>
-                <th>Alamat Pengiriman</th>
-            </tr>
-            @foreach($checkouts as $checkout)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d-m-Y') }}</td>
-                <td>{{ $checkout->user_id }}</td>
-                <td>Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
-                <td>{{ $checkout->alamat_pengiriman }}</td>
-            </tr>
-            @endforeach
-        </table>
-        <div class="footer">
-            <p>&copy; {{ date('Y') }} Sayur Keren</p>
+        <!-- Bagian Header -->
+        <div class="header">
+            <div class="header-info">
+                <strong>Sayur Keren</strong><br>
+                Jl. KIS. Mangunsarkoro No.19, Jati Baru, Kec. Padang Tim., <br>Kota Padang, Sumatera Barat 25121<br>
+                Telepon: 081244323035<br>
+                Email: info@sayurkeren.com
+            </div>
         </div>
+
+        <!-- Judul Laporan -->
+        <h2 class="text-center">Laporan Penjualan</h2>
+        <p class="text-center">
+            Periode:
+            <strong>
+                {{ $bulan }} {{ $tahun }}
+            </strong>
+        </p>
+
+        <!-- Menampilkan pesan jika tidak ada penjualan -->
+        @if($message)
+            <p class="text-center" style="color: red; font-weight: bold;">{{ $message }}</p>
+        @else
+            <table class="table table-bordered">
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal Pemesanan</th>
+                    <th>User ID</th>
+                    <th>Total Harga</th>
+                    <th>Alamat Pengiriman</th>
+                </tr>
+                @foreach($checkouts as $checkout)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d-m-Y') }}</td>
+                    <td>{{ $checkout->user_id }}</td>
+                    <td>Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
+                    <td>{{ $checkout->alamat_pengiriman }}</td>
+                </tr>
+                @endforeach
+            </table>
+
+            <!-- Menampilkan total penjualan -->
+            <p style="text-align: right; font-weight: bold;">
+                Total Penjualan: Rp {{ number_format($totalPenjualan, 0, ',', '.') }}
+            </p>
+        @endif
     </div>
 </body>
 </html>

@@ -3,6 +3,9 @@
 @section('navAdm', 'active')
 
 @section('content')
+<div class="d-flex justify-content-center align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h3 class="text-center" style="color: #0B773D; font-size: 25px;">PESANAN</h3>
+</div>
 <div class="container-fluid container-custom mt-4">
     <div class="card shadow-sm card-custom">
         <div class="card-header bg-success text-white">

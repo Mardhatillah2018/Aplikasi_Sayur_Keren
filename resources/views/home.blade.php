@@ -62,7 +62,7 @@
                         <div class="swiper-wrapper">
                             @foreach($kategoris as $kategori)
                                 <div class="swiper-slide text-center">
-                                    <a href="/kategori/{{ $kategori->slug }}" class="nav-link">
+                                    <a href="/" class="nav-link">
                                         <img src="{{ asset('images/kategori/' . $kategori->gambar_kategori) }}"
                                              class="rounded-circle img-category"
                                              alt="{{ $kategori->nama_kategori }}">

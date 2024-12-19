@@ -50,7 +50,7 @@
                 <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar" id="gambar">
 
                 @if ($produk->gambar)
-                    <img src="{{ asset('images/' . $produk->gambar) }}" alt="Gambar Produk" class="img-thumbnail mt-2" width="150">
+                    <img src="{{ asset('images/produk/' . $produk->gambar) }}" alt="Gambar Produk" class="img-thumbnail mt-2" width="150">
                 @endif
 
                 @error('gambar')
