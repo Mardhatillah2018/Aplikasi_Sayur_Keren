@@ -136,7 +136,7 @@
     <!-- End General Report -->
 
     <div class="bg-white p-6 rounded shadow">
-        <h2 class="text-lg font-bold mb-4" style="color: #07582d;">Grafik 7 Penjualan Terakhir</h2>
+        <h2 class="text-lg font-bold mb-4" style="color: #07582d;">Grafik Penjualan 7 Hari Terakhir</h2>
         <canvas id="grafikPenjualan"></canvas>
     </div>
     <div class="bg-white p-6 rounded shadow mt-6">

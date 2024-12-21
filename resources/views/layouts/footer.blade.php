@@ -6,7 +6,7 @@
                 <a href="/">
                     <img src="{{ asset('images/sayurkeren.png') }}" alt="Sayur Keren Logo" class="img-fluid" style="max-width: 200px;">
                 </a>
-                <p class="text-justify" style="margin-left: 21px; margin-right: 10px; line-height: 1.5; font-size: 13px; color: #0B773D;">
+                <p class="text-justify" style="margin-left: 21px; margin-right: 10px; line-height: 1.5; font-size: 13px; color: #0B773D; font-weight: normal;">
                     Temukan produk segar dan berkualitas hanya di Sayur Keren. Kami menyediakan berbagai macam sayuran, daging, makanan olahan, dan banyak lagi. Dengan komitmen terhadap kualitas, kami memastikan setiap produk yang kami tawarkan adalah yang terbaik untuk memenuhi kebutuhan Anda. Nikmati pengalaman berbelanja yang menyenangkan dengan layanan pelanggan yang ramah dan produk berkualitas tinggi.
                 </p>
                 <!-- Icon Media Sosial -->
@@ -23,7 +23,7 @@
             <!-- Kolom Kedua -->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                 <h6 class="text-uppercase">Alamat</h6>
-                <p style="line-height: 1.5; font-size: 13px; color: #0B773D;">
+                <p style="line-height: 1.5; font-size: 13px; color: #0B773D; font-weight: normal;">
                     Sayur Keren<br>
                     Lokasi: Jl. KIS. Mangunsarkoro No.19, Jati Baru, Kec. Padang Tim., Kota Padang, Sumatera Barat 25121
                 </p>

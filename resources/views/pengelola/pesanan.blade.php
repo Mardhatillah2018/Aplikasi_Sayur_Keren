@@ -14,7 +14,8 @@
                     <tr>
                         <th>No</th>
                         <th>Alamat Pengiriman</th>
-                        <th>Total Harga</th>
+                        <th>Pesanan</th>
+                        <th>Total</th>
                         <th>Bukti Transfer</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -27,6 +28,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <span class="d-block">{{ $checkout->alamat_pengiriman }}</span>
+                        </td>
+                        <td>
+                            <!-- Tombol untuk membuka modal detail produk -->
+                            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#detailModal{{ $checkout->id }}" title="Lihat Produk">
+                                <i class="fas fa-eye"></i> Detail
+                            </button>
                         </td>
                         <td><span class="text-success">Rp {{ number_format($checkout->total_harga, 2) }}</span></td>
                         <td>
@@ -97,11 +104,14 @@
                                 @endif
                             </div>
 
-                            <!-- Tombol untuk membuka modal pesan -->
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#messageModal{{ $checkout->id }}" title="Kirim Pesan">
-                                <i class="fas fa-comment"></i> Pesan
-                            </button>
+                            <!-- Tombol untuk membuka modal pesan hanya jika belum ada pesan -->
+                            @if (!$checkout->catatan_admin)
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#messageModal{{ $checkout->id }}" title="Kirim Pesan">
+                                    <i class="fas fa-comment"></i> Pesan
+                                </button>
+                            @endif
                         </td>
+
                     </tr>
 
                     <!-- Modal Pesan -->
@@ -125,6 +135,57 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal Detail Produk -->
+                    <div class="modal fade" id="detailModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detailModalLabel">Detail Pesanan</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @php
+                                        $details = json_decode($checkout->produk_details, true);
+                                        $totalBelanja = 0;
+                                        $diskon = $checkout->diskon;  // Misal diskon diambil dari $checkout->diskon
+                                        $ongkir = $checkout->ongkir;  // Misal ongkir diambil dari $checkout->ongkir
+                                    @endphp
+                                    @foreach ($details as $index => $detail)
+                                        @php
+                                            $subtotal = $detail['jumlah'] * $detail['harga'];
+                                            $totalBelanja += $subtotal;
+                                        @endphp
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between">
+                                                <span><strong>Nama:</strong> {{ $detail['nama'] }}</span>
+                                                <span><strong>Jumlah:</strong> {{ $detail['jumlah'] }}</span>
+                                                <span><strong>Total:</strong> Rp{{ number_format($subtotal, 0, ',', '.') }}</span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    <!-- Garis Pemisah untuk Diskon dan Ongkir -->
+                                    <hr>
+
+                                    <!-- Menampilkan Diskon dan Ongkir -->
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <span><strong>Diskon:</strong></span>
+                                        <span>Rp{{ number_format($diskon, 0, ',', '.') }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <span><strong>Ongkir:</strong></span>
+                                        <span>Rp{{ number_format($ongkir, 0, ',', '.') }}</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-between">
+                                    <h5 class="m-0">Total Belanja: <strong>Rp{{ number_format($totalBelanja - $diskon + $ongkir, 0, ',', '.') }}</strong></h5>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     @empty
                     <tr>
