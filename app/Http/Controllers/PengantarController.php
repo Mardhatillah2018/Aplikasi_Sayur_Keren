@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class PengantarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         //ambil keyword pencarian
@@ -31,17 +28,11 @@ class PengantarController extends Controller
         return view('admin.admin-pengantar.index', compact('pengantars'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.admin-pengantar.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -72,9 +63,6 @@ class PengantarController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         // Temukan pengantar berdasarkan id
@@ -84,9 +72,6 @@ class PengantarController extends Controller
         return view('admin.admin-pengantar.edit', compact('pengantar'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         // Validasi data yang dikirim
@@ -115,9 +100,6 @@ class PengantarController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Pengguna::destroy($id);

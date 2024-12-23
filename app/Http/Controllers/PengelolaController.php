@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class PengelolaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         // Ambil keyword pencarian dari request
@@ -33,18 +30,11 @@ class PengelolaController extends Controller
         return view('admin.admin-pengelola.index', compact('pengelolas', 'search'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.admin-pengelola.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -75,21 +65,15 @@ class PengelolaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
-{
-    // Temukan pengelola berdasarkan id
-    $pengelola = Pengguna::findOrFail($id);
+    {
+        // Temukan pengelola berdasarkan id
+        $pengelola = Pengguna::findOrFail($id);
 
-    // Kirim data pengelola ke view
-    return view('admin.admin-pengelola.edit', compact('pengelola'));
-}
+        // Kirim data pengelola ke view
+        return view('admin.admin-pengelola.edit', compact('pengelola'));
+    }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         // Validasi data yang dikirim
@@ -118,9 +102,6 @@ class PengelolaController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Pengguna::destroy($id);

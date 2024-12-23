@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-banner') ? 'active' : '' }}" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ request()->is('admin-banner') ? 'active' : '' }}" href="/admin-banner">
                         <i class="bi bi-card-image"></i>
                         Banner
                     </a>

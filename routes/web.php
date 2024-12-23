@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BatchStokController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
@@ -34,24 +35,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/semuaproduk', [FrontendController::class, 'index'])->name('semuaproduk');
 Route::get('/semuaproduk/search', [FrontendController::class, 'search'])->name('frontend.search');
-
-// Route::get('/promo', function () {
-//     return view('landing_page.promo');
-// });
-
-// Route::get('/terlaris', function () {
-//     return view('landing_page.terlaris');
-// });
-
-// Route::get('/kategori', function () {
-//     return view('landing_page.kategori');
-// });
-
-// Route::get('/terbaru', function () {
-//     return view('landing_page.terbaru');
-// });
 Route::get('/terbaru', [FrontendController::class, 'terbaru']);
-
 Route::get('/tentang', function () {
     return view('landing_page.tentang');
 });
@@ -105,6 +89,7 @@ Route::delete('/admin-pelanggan/{id}', [PenggunaController::class, 'destroy'])->
 Route::resource('/admin-promo', PromoController::class)->middleware(['auth', 'role:admin']);
 Route::resource('/admin-pengelola', PengelolaController::class)->middleware(['auth', 'role:admin']);
 Route::resource('/admin-pengantar', PengantarController::class)->middleware(['auth', 'role:admin']);
+Route::resource('/admin-banner', BannerController::class)->middleware(['auth', 'role:admin']);
 
 //RIWAYAT BELANJA
 Route::post('/riwayat-belanja/{id}/ulasan', [RiwayatBelanjaController::class, 'simpanUlasan'])->name('riwayatBelanja.simpanUlasan');

@@ -12,9 +12,7 @@ use Illuminate\Queue\Console\BatchesTableCommand;
 
 class BatchStokController extends Controller
 {
-    /**
-     * Menampilkan list batch stok
-     */
+    // Menampilkan list batch stok
     public function index(Request $request)
     {
         $produkId = $request->query('produk_id');
@@ -26,20 +24,13 @@ class BatchStokController extends Controller
         return view('admin.batchStok.index', compact('batchStoks'));
     }
 
-
-
-
-    /**
-     * Menampilkan halaman tambah
-     */
+    // Halaman create batch stok
     public function create()
     {
         return view('admin.batchStok.create', ['batchStoks' => BatchStok::all()]);
     }
 
-    /**
-     * Simpan data
-     */
+    // simpan data batch stok baru
     public function store(Request $request)
     {
         $request->validate([
@@ -62,10 +53,7 @@ class BatchStokController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-
+    // tampilan detail batch stok
      public function show($id)
      {
          $batchStoks = BatchStok::where('produk_id', $id)
@@ -75,10 +63,7 @@ class BatchStokController extends Controller
          return view('admin.batchStok.index', compact('batchStoks'));
      }
 
-
-    /**
-     * Menampilkan halaman edit
-     */
+    // menampilkan halaman edit
     public function edit($id)
     {
         $batch_stok = BatchStok::find($id);
@@ -88,10 +73,7 @@ class BatchStokController extends Controller
         return view('admin.batchStok.edit', compact('batch_stok'));
     }
 
-
-    /**
-     * Untuk update data yang sudah di edit
-     */
+    // update data batch stok
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([

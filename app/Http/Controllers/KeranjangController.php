@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class KeranjangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $keranjangs = Keranjang::with('produk')->where('pengguna_id', Auth::id())->get();
@@ -23,8 +20,6 @@ class KeranjangController extends Controller
         return view('pelanggan.keranjang', compact('keranjangs', 'totalHarga'));
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -33,9 +28,6 @@ class KeranjangController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -71,10 +63,6 @@ class KeranjangController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show()
     {
         $keranjangs = Keranjang::where('pengguna_id', Auth::id())->get();
@@ -84,8 +72,6 @@ class KeranjangController extends Controller
 
         return view('pelanggan.keranjang', compact('keranjangs', 'totalHarga'));
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -103,25 +89,17 @@ class KeranjangController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
-{
-    // Hapus produk dari keranjang
-    Keranjang::where('id', $id)->where('pengguna_id', Auth::id())->delete();
+    {
+        // Hapus produk dari keranjang
+        Keranjang::where('id', $id)->where('pengguna_id', Auth::id())->delete();
 
-    // Ambil data keranjang yang diperbarui dari database
-    $keranjangs = Keranjang::with('produk')->where('pengguna_id', Auth::id())->get();
+        // Ambil data keranjang yang diperbarui dari database
+        $keranjangs = Keranjang::with('produk')->where('pengguna_id', Auth::id())->get();
 
-    // Simpan data keranjang yang diperbarui ke sesi
-    session()->put('keranjangs', $keranjangs);
+        // Simpan data keranjang yang diperbarui ke sesi
+        session()->put('keranjangs', $keranjangs);
 
-    return redirect()->back()->with('success', 'Produk berhasil dihapus dari keranjang.');
-}
-
-
-    // KeranjangController.php return response()->json(['success' => false])
-
-
+        return redirect()->back()->with('success', 'Produk berhasil dihapus dari keranjang.');
+    }
 }

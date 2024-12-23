@@ -126,9 +126,6 @@
                 <h5 class="modal-title" id="confirmModalLabel">Berhasil Menambahkan Produk ke Keranjang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Produk berhasil ditambahkan ke keranjang.
-            </div>
             <div class="modal-footer">
                 <a href="/keranjang" class="btn btn-success">Lihat Keranjang</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Lanjut Belanja</button>

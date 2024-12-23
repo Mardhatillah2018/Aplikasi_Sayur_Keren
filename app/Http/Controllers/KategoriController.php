@@ -7,17 +7,11 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    /**
-     * Mengambil semua kategori untuk ditampilkan di home.blade.php
-     */
     public function getKategori()
     {
         return Kategori::select('nama_kategori', 'gambar_kategori')->get(); // Ambil nama dan gambar kategori
     }
 
-    /**
-     * Menampilkan halaman index kategori (jika diperlukan)
-     */
     public function index(Request $request)
     {
         // Ambil keyword pencarian dari request
@@ -37,18 +31,11 @@ class KategoriController extends Controller
         return view('admin.kategori.index', ['kategoris' => $kategoris, 'search' => $search]);  // Ganti 'keyword' dengan 'search'
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.kategori.create',['kategoris' =>Kategori::all()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -75,9 +62,6 @@ class KategoriController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $kategori = Kategori::find($id);
@@ -85,9 +69,6 @@ class KategoriController extends Controller
         return view('admin.kategori.edit', compact('kategori'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, String $id)
     {
         $kategori = Kategori::findOrFail($id);
@@ -118,9 +99,6 @@ class KategoriController extends Controller
         return redirect('/admin-kategori')->with('success', 'Kategori berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Kategori::destroy($id);

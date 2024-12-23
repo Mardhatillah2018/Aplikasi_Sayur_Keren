@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         // Ambil input pencarian dari request
@@ -30,20 +27,11 @@ class ProdukController extends Controller
         return view('admin.produk.index', compact('produks'));
     }
 
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.produk.create',['kategoris' =>Kategori::all()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -79,9 +67,6 @@ class ProdukController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(String $id)
     {
         $produk = Produk::find($id);
@@ -89,10 +74,6 @@ class ProdukController extends Controller
         return view('admin.produk.edit', ['produk' => $produk, 'kategoris' => Kategori::all()]);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, String $id)
     {
         // Cari produk berdasarkan ID
@@ -130,21 +111,9 @@ class ProdukController extends Controller
         return redirect('/admin-produk')->with('pesan', 'Data produk berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         Produk::destroy($id);
         return redirect('admin-produk')->with('pesan', 'Data berhasil dihapus');
     }
-
-    // ProdukController.php
-
-    public function jumlahProduk()
-    {
-        $jumlahProduk = Produk::count(); // Menghitung total produk
-        return view('admin.dashboard', compact('jumlahProduk'));
-    }
-
 }

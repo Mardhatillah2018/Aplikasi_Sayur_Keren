@@ -11,28 +11,31 @@
         </li>
     </ul>
 
-    <ul class="navbar-nav">
-    <li class="nav-item dropdown px-3">
-        @if (session('username')) <!-- Periksa apakah username ada di session -->
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #07582d; font-size: 16px; text-decoration: none;">
-                <i class="bi bi-person-fill me-2"></i>{{ session('username') }}
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li>
-                    <form action="/logout" method="POST" class="dropdown-item" style="margin: 0; padding: 0;">
+    <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item dropdown px-3">
+            @if (session('username')) <!-- Periksa apakah username ada di session -->
+                <div class="header-right">
+                    <!-- Tombol untuk Notifikasi -->
+                    <button class="btn btn-link text-decoration-none px-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+                        <i class="bi bi-bell-fill"></i>
+                    </button>
+                    <span class="me-2">
+                        <i class="bi bi-person-fill" style="color: #07582d;" title="Akun"></i> {{ session('username') }}
+                    </span>
+
+                    <!-- Tombol Logout -->
+                    <form action="/logout" method="POST" style="display:inline;">
                         @csrf
-                        <button type="submit" class="btn btn-link text-decoration-none" style="color: #07582d; padding: 0;">
-                            <i class="bi bi-door-open me-2"></i> Logout
+                        <button type="submit" class="btn btn-logout">
+                            <i class="bi bi-power"></i> Keluar
                         </button>
                     </form>
-                </li>
-            </ul>
-        @else
-            <button class="btn-login" style="border-color: #07582d; transition: background-color 0.3s, color 0.3s;" onclick="window.location.href='/login';">
-                <i class="bi bi-person-fill"></i> Login
-            </button>
-        @endif
-    </li>
-</ul>
-
+                </div>
+            @else
+                <button class="btn-login" style="border-color: #07582d; transition: background-color 0.3s, color 0.3s;" onclick="window.location.href='/login';">
+                    <i class="bi bi-person-fill"></i> Login
+                </button>
+            @endif
+        </li>
+    </ul>
 </header>

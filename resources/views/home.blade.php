@@ -12,7 +12,10 @@
                     <div class="carousel-inner h-100">
                         @foreach($banners as $key => $banner)
                         <div class="carousel-item {{ $key == 0 ? 'active' : '' }} h-100">
-                            <img src="{{ asset('images/' . $banner->gambar_banner) }}" class="d-block w-100 h-100" alt="Banner {{ $key + 1 }}" style="object-fit: cover;">
+                            {{-- <img src="{{ asset('images/bannerSlide/' . $banner->gambar_banner) }}" class="d-block w-100 h-100 banner-img" alt="Banner {{ $key + 1 }}" style="object-fit: cover;"> --}}
+                            <div class="carousel-img-wrapper" style="position: relative; width: 100%; padding-bottom: 56.25%;"> <!-- 16:9 aspect ratio -->
+                                <img src="{{ asset('images/bannerSlide/' . $banner->gambar_banner) }}" class="d-block w-100 h-100 banner-img" alt="Banner {{ $key + 1 }}" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+                            </div>
                             <div class="carousel-caption d-flex justify-content-center align-items-center" style="pointer-events: none;">
                                 <a href="/semuaproduk" class="btn belanja-sekarang">BELANJA SEKARANG</a>
                             </div>
@@ -32,15 +35,15 @@
             </div>
 
             <div class="col-md-6">
-                <div class="banner-ad bg-success-subtle block-2 mt-2" style="background:url('images/banner_2/banner1_1.png') no-repeat;background-size: cover; height: 200px;"></div>
-                <div class="banner-ad bg-danger block-3 mt-3" style="background:url('images/banner_2/banner2_2.png') no-repeat;background-size: cover; height: 200px;"></div>
+                <div class="banner-ad bg-success-subtle block-2 " style="background:url('images/banner/banner1_1.png') no-repeat;background-size: cover; height: 170px;"></div>
+                <div class="banner-ad bg-danger block-3 mt-3" style="background:url('images/banner/banner2_2.png') no-repeat;background-size: cover; height: 170px;"></div>
                 <!-- / Banner Blocks -->
             </div>
         </div>
     </div>
 
     <!-- Section Kategori -->
-    <section class="py-5 overflow-hidden">
+    <section class="py-3 overflow-hidden">
         <div class="container-lg">
             <div class="row">
                 <div class="col-md-12">
@@ -82,12 +85,26 @@
 </section>
 
 <style>
-/* Carousel Banner Styles */
+/* Carousel Banner Styles
 .carousel-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+} */
+ /* Pastikan carousel item dan gambar memiliki ukuran tetap */
+.carousel-item {
+    width: 100%; /* Lebar mengikuti container */
+    height: 576px; /* Tinggi tetap */
+    position: relative; /* Agar caption bisa diposisikan dengan baik */
 }
+
+.banner-img, .carousel-item img {
+    width: 100%; /* Gambar mengikuti lebar kontainer */
+    height: 100%; /* Gambar mengikuti tinggi kontainer */
+    object-fit: cover; /* Gambar akan menutupi kotak slide */
+    object-position: center; /* Fokus gambar di tengah */
+}
+
 .carousel-caption {
     position: absolute;
     top: 50%;

@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    /**
-     * Menampilkan halaman checkout
-     */
+    // menampilkan halaman checkout
     public function index()
     {
         $checkouts = Checkout::latest()->paginate(10); // Gunakan paginate untuk hasil paginasi
         return view('pengelola.pesanan', compact('checkouts'));
     }
 
+    // menampilkan pesanan untuk pengelola
     public function showPesanan()
     {
         // Memfilter pesanan yang statusnya bukan 'dikirim' atau 'selesai'
@@ -82,6 +81,7 @@ class CheckoutController extends Controller
         return redirect()->back()->with('success', 'Status pesanan berhasil diperbarui.');
     }
 
+    // pesan dari pengelola
     public function sendMessage(Request $request, $id)
     {
         // Validasi input
@@ -100,9 +100,7 @@ class CheckoutController extends Controller
         return redirect()->back()->with('success', 'Pesan berhasil dikirim.');
     }
 
-        /**
-         * Store a newly created resource in storage.
-         */
+    // simpan data checkout
     public function store(Request $request)
     {
         // Validasi input
@@ -203,9 +201,7 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.detail', $checkout->id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // tampilan checkout
     public function show()
     {
         $user = Auth::user();
@@ -240,33 +236,23 @@ class CheckoutController extends Controller
         return view('pelanggan.checkout', compact('user', 'keranjangs', 'totalHargaProduk', 'ongkir', 'diskonAmount', 'totalPembayaran', 'promo'));
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
     }
 
-   public function detail($id)
+    // detail pesanan
+    public function detail($id)
     {
         $checkout = Checkout::with('pengguna')->findOrFail($id);
         $produkDetails = json_decode($checkout->produk_details);

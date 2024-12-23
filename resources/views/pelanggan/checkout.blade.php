@@ -248,26 +248,26 @@
                             });
 
                             document.addEventListener('DOMContentLoaded', function () {
-        // Fungsi untuk menangani pengiriman formulir
-        document.querySelector('form').addEventListener('submit', function (event) {
-            const lat = parseFloat(document.getElementById('latitude').value);
-            const lon = parseFloat(document.getElementById('longitude').value);
-            const ongkir = parseFloat(document.getElementById('ongkirInput').value);
+                                // Fungsi untuk menangani pengiriman formulir
+                                document.querySelector('form').addEventListener('submit', function (event) {
+                                    const lat = parseFloat(document.getElementById('latitude').value);
+                                    const lon = parseFloat(document.getElementById('longitude').value);
+                                    const ongkir = parseFloat(document.getElementById('ongkirInput').value);
 
-            // Validasi alamat dan ongkir
-            if (!lat || !lon) {
-                event.preventDefault(); // Mencegah pengiriman formulir
-                alert('Silakan pilih alamat dan hitung ongkir terlebih dahulu.');
-                return;
-            }
+                                    // Validasi alamat dan ongkir
+                                    if (!lat || !lon) {
+                                        event.preventDefault(); // Mencegah pengiriman formulir
+                                        alert('Silakan pilih alamat dan hitung ongkir terlebih dahulu.');
+                                        return;
+                                    }
 
-            // Jika alamat dan ongkir sudah ada, tampilkan konfirmasi
-            const confirmation = confirm('Apakah Anda ingin melanjutkan pemesanan?');
-            if (!confirmation) {
-                event.preventDefault(); // Mencegah pengiriman formulir
-            }
-        });
-    });
+                                    // Jika alamat dan ongkir sudah ada, tampilkan konfirmasi
+                                    const confirmation = confirm('Apakah Anda ingin melanjutkan pemesanan?');
+                                    if (!confirmation) {
+                                        event.preventDefault(); // Mencegah pengiriman formulir
+                                    }
+                                });
+                            });
                         </script>
                     </div>
                 </div>

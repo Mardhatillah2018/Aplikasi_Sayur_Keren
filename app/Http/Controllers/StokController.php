@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class StokController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // Memuat stok produk dengan relasi ke produk
@@ -20,57 +17,48 @@ class StokController extends Controller
         return view('admin.stok.index', ['stoks' => $stoks]);
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.stok.create', ['produks' => Produk::all()]);
     }
 
-    /**
-     * Store a newly created stock in storage.
-     */
     public function store(Request $request)
-{
-    // Validasi input
-    $validated = $request->validate([
-        'produk_id' => 'required|exists:produks,id',
-        'jumlah' => 'required|integer|min:1',
-    ]);
+    {
+        // Validasi input
+        $validated = $request->validate([
+            'produk_id' => 'required|exists:produks,id',
+            'jumlah' => 'required|integer|min:1',
+        ]);
 
-    // Mendapatkan produk untuk menghitung tanggal kadaluarsa berdasarkan masa tahan
-    $produk = Produk::findOrFail($validated['produk_id']);
+        // Mendapatkan produk untuk menghitung tanggal kadaluarsa berdasarkan masa tahan
+        $produk = Produk::findOrFail($validated['produk_id']);
 
-    // Menambahkan tanggal kadaluarsa otomatis berdasarkan masa tahan produk
-    $validated['tgl_kadaluarsa'] = Carbon::now()->addDays($produk->masa_tahan);
+        // Menambahkan tanggal kadaluarsa otomatis berdasarkan masa tahan produk
+        $validated['tgl_kadaluarsa'] = Carbon::now()->addDays($produk->masa_tahan);
 
-    // Cek apakah sudah ada stok untuk produk ini
-    $existingStok = Stok::where('produk_id', $validated['produk_id'])->first();
+        // Cek apakah sudah ada stok untuk produk ini
+        $existingStok = Stok::where('produk_id', $validated['produk_id'])->first();
 
-    if ($existingStok) {
-        // Jika sudah ada, tambahkan jumlah stok yang baru
-        $existingStok->jumlah += $validated['jumlah'];
-        // $existingStok->tgl_kadaluarsa = $validated['tgl_kadaluarsa']; // Update tanggal kadaluarsa jika diperlukan
-        $existingStok->save();
-    } else {
-        // Jika belum ada stok, simpan data baru
-        $existingStok = Stok::create(array_merge($validated, ['tgl_stok' => Carbon::now()]));
+        if ($existingStok) {
+            // Jika sudah ada, tambahkan jumlah stok yang baru
+            $existingStok->jumlah += $validated['jumlah'];
+            // $existingStok->tgl_kadaluarsa = $validated['tgl_kadaluarsa']; // Update tanggal kadaluarsa jika diperlukan
+            $existingStok->save();
+        } else {
+            // Jika belum ada stok, simpan data baru
+            $existingStok = Stok::create(array_merge($validated, ['tgl_stok' => Carbon::now()]));
+        }
+
+        // Menyimpan data ke tabel batchstok hanya dengan produk_id dan tgl_kadaluarsa
+        BatchStok::create([
+            'produk_id' => $validated['produk_id'],
+            'tgl_kadaluarsa' => $validated['tgl_kadaluarsa'],
+            'jumlah' => $validated['jumlah'] // tambahkan nilai jumlah di sini
+        ]);
+
+        // Redirect ke halaman daftar stok dengan pesan sukses
+        return redirect('/admin-stok')->with('pesan', 'Data Stok Berhasil Disimpan');
     }
-
-    // Menyimpan data ke tabel batchstok hanya dengan produk_id dan tgl_kadaluarsa
-    BatchStok::create([
-        'produk_id' => $validated['produk_id'],
-        'tgl_kadaluarsa' => $validated['tgl_kadaluarsa'],
-        'jumlah' => $validated['jumlah'] // tambahkan nilai jumlah di sini
-    ]);
-
-    // Redirect ke halaman daftar stok dengan pesan sukses
-    return redirect('/admin-stok')->with('pesan', 'Data Stok Berhasil Disimpan');
-}
-
 
     public function tambahStok($id)
     {
@@ -78,8 +66,6 @@ class StokController extends Controller
         $produks = Produk::all(); // Ambil semua produk
         return view('admin.stok.tambahStok', compact('stok', 'produks'));
     }
-
-
 
     /**
      * Display the specified resource.
