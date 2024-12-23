@@ -11,6 +11,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
+        .btn-logout {
+            background-color: #0e6336; /* Warna tombol */
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px; /* Bentuk tombol bulat */
+            transition: all 0.3s ease-in-out; /* Efek transisi saat hover */
+        }
+
+        .btn-logout:hover {
+            background-color: #042c17; /* Warna saat hover */
+            color: #fff;
+            transform: scale(1.1); /* Efek zoom saat hover */
+        }
+
+        .btn-logout:focus {
+            outline: none; /* Menghapus outline saat tombol di-klik */
+        }
+
+        .btn-logout i {
+            margin-right: 5px; /* Spasi antara ikon dan teks */
+        }
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;

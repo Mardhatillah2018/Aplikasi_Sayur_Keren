@@ -69,7 +69,7 @@
                                     </button> --}}
                                     <button type="submit" name="status" value="diproses"
                                         class="btn btn-sm {{ $checkout->status == 'diproses' ? 'btn-warning' : 'btn-outline-warning' }} {{ in_array($checkout->status, ['dikirim', 'selesai']) ? 'disabled' : '' }}"
-                                        title="Diproses">
+                                        title="Diproses" onclick="return confirm('Proses Pesanan ini?')">
                                         <i class="fas fa-spinner"></i>
                                     </button>
                                 </div>
@@ -77,7 +77,7 @@
                                 <div class="d-flex gap-1">
                                     <button type="submit" name="status" value="dikirim"
                                         class="btn btn-sm {{ $checkout->status == 'dikirim' ? 'btn-info' : 'btn-outline-info' }} {{ $checkout->status == 'selesai' ? 'disabled' : '' }}"
-                                        title="Dikirim">
+                                        title="Dikirim" onclick="return confirm('Kirim Pesanan ini?')">
                                         <i class="fas fa-shipping-fast"></i>
                                     </button>
                                     {{-- <button type="submit" name="status" value="selesai"

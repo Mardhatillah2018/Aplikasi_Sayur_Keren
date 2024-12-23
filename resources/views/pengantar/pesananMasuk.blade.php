@@ -63,35 +63,15 @@
                                     <button type="submit" name="status" value="selesai"
                                         class="btn btn-sm {{ $checkout->status == 'selesai' ? 'btn-success' : 'btn-outline-success' }}"
                                         {{ $checkout->status == 'selesai' ? 'disabled' : '' }}
-                                        title="Selesai">
+                                        title="Selesai"
+                                        onclick="return confirm('Selesaikan Pesanan ini?')">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
+
                             </form>
                         </td>
                     </tr>
-
-                    <!-- Modal Pesan -->
-                    <div class="modal fade" id="messageModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="messageModalLabel">Kirim Pesan ke Pelanggan</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('checkouts.sendMessage', $checkout->id) }}" method="POST">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="message" class="form-label">Pesan</label>
-                                            <textarea class="form-control" id="message" name="catatan_admin" rows="4" required>{{ $checkout->catatan_admin }}</textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     @empty
                     <tr>
