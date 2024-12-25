@@ -1,22 +1,22 @@
 @extends('layouts.main')
 @section('content')
 
-    <h5 class="mt-5">Produk Terbaru</h5>
+<h5 class="mt-5">Produk Terbaru</h5>
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-        <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+        <div class="product-grid row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
 
         @forelse($produks as $produk)
-            <div class="col">
+            <div class="col mb-4">
                 <div class="product-item position-relative">
                     <figure>
                         <a href="#" title="{{ $produk->nama }}">
-                            <img src="{{ asset('images/produk/' . $produk->gambar) }}" class="tab-image" alt="{{ $produk->nama }}">
+                            <img src="{{ asset('images/produk/' . $produk->gambar) }}" class="tab-image img-fluid" alt="{{ $produk->nama }}">
                         </a>
                     </figure>
 
-                    <h3>{{ $produk->nama }}</h3>
+                    <h3 class="h6">{{ $produk->nama }}</h3>
 
                     <div style="display: flex; flex-direction: column; gap: 5px;">
                         <p style="margin: 0; line-height: normal; font-size: 12px; color: #666;">{{ $produk->keterangan }}</p>
@@ -38,7 +38,7 @@
                         @endif
                     </div>
 
-                    <span class="price" style="font-size: 16px;">Rp {{ number_format($produk->harga, 2) }}</span>
+                    <span class="price" style="font-size: 14px;">Rp {{ number_format($produk->harga, 2) }}</span>
 
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="input-group product-qty" data-stock="{{ $produk->stok->jumlah ?? 0 }}">
@@ -191,4 +191,3 @@
 </script>
 
 @endsection
-

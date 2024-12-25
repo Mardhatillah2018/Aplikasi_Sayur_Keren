@@ -10,7 +10,7 @@ class BannerController extends Controller
     // Menampilkan list banner
     public function index()
     {
-        $banners = Banner::paginate(10); // Pagination dengan 10 data per halaman
+        $banners = Banner::latest()->paginate(10); // Pagination dengan 10 data per halaman
         return view('admin.banner.index', [
             'banners' => $banners,
         ]);

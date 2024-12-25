@@ -8,7 +8,7 @@
             <div class="col-md-12 col-lg-10 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
-                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Detail Akun</h4>
+                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D; font-size: 1.2rem;">Detail Akun</h4>
 
                         <div class="text-center mb-2">
                             <i class="bi bi-person-fill" style="font-size: 40px; color: #0B773D;"></i>
@@ -18,7 +18,7 @@
                         <div class="mb-3">
                             <div class="row align-items-center">
                                 <div class="col-4">
-                                    <strong>Username:</strong>
+                                    <strong style="font-size: 0.890rem;">Username:</strong>
                                 </div>
                                 <div class="col-8">
                                     {{ session('username') }}
@@ -26,7 +26,7 @@
                             </div>
                             <div class="row align-items-center">
                                 <div class="col-4">
-                                    <strong>Email:</strong>
+                                    <strong style="font-size: 0.890rem;">Email:</strong>
                                 </div>
                                 <div class="col-8">
                                     {{ session('email') }}
@@ -34,7 +34,7 @@
                             </div>
                             <div class="row align-items-center">
                                 <div class="col-4">
-                                    <strong>No HP:</strong>
+                                    <strong style="font-size: 0.890rem;">No HP:</strong>
                                 </div>
                                 <div class="col-8">
                                     {{ session('nohp') }}
@@ -54,7 +54,7 @@
             <div class="col-md-12 col-lg-10 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
-                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Keranjang Belanja Anda</h4>
+                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D; font-size: 1.2rem;">Keranjang Belanja Anda</h4>
                         <div class="text-center mb-4">
                             <i class="bi bi-cart-fill" style="font-size: 50px; color: #0B773D;"></i>
                         </div>
@@ -63,17 +63,17 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Produk</th>
-                                        <th>Jumlah</th>
+                                        <th class="text-center" style="font-size: 0.890rem;">No</th>
+                                        <th class="text-center" style="font-size: 0.890rem;">Produk</th>
+                                        <th class="text-center" style="font-size: 0.890rem;">Jumlah</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach(session('keranjangs') as $index => $keranjang)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $keranjang->produk->nama }}</td>
-                                            <td>{{ $keranjang->jumlah }}</td>
+                                            <td style="font-size: 0.890rem;">{{ $index + 1 }}</td>
+                                            <td style="font-size: 0.890rem;">{{ $keranjang->produk->nama }}</td>
+                                            <td style="font-size: 0.890rem;" >{{ $keranjang->jumlah }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

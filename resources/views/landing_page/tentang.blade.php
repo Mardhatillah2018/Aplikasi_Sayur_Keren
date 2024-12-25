@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('content')
 <br>
-<h4 class="text-center mt-4"><b>Mengapa Harus Belanja di Sayur Keren?</h4>
+<h4 class="text-center mt-4"><b>Mengapa Harus Belanja di Sayur Keren?</b></h4>
 
 <div class="row mt-4">
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6 col-12 mb-3">
         <div class="card hover-card">
             <div class="img-container">
                 <img src="/images/tentang/tentang1.png" class="card-img-top" alt="Produk Segar Berkualitas">
@@ -15,24 +15,24 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6 col-12 mb-3">
         <div class="card hover-card">
             <div class="img-container">
                 <img src="/images/tentang/tentang2.png" class="card-img-top" alt="Mudah dan Praktis">
             </div>
             <div class="card-body text-center">
-                <h5 class="card-title">Mudah dan Praktis</h5>
+                <h5 class="card-title">Mudah & Praktis</h5>
                 <p class="card-text">Belanja kebutuhan sehari-hari jadi lebih mudah hanya dengan beberapa klik. Kami mengirimkan pesanan langsung ke alamat Anda, membuat belanja praktis dan efisien tanpa perlu keluar rumah.</p>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6 col-12 mb-3">
         <div class="card hover-card">
             <div class="img-container">
                 <img src="/images/tentang/tentang3.png" class="card-img-top" alt="Harga Kompetitif dan Promo Menarik">
             </div>
             <div class="card-body text-center">
-                <h6 class="card-title">Harga Kompetitif dan Promo Menarik</h6>
+                <h5 class="card-title">Hemat & Promo Menarik</h5>
                 <p class="card-text">Menawarkan harga kompetitif untuk produk segar dan olahan, serta promo menarik. Anda bisa menikmati penawaran terbaik tanpa khawatir kualitas, menjadikan belanja di Sayur Keren pilihan hemat.</p>
             </div>
         </div>
@@ -41,9 +41,9 @@
 <br>
 <style>
     .hover-card {
-    border: 1px solid #0e6336; /* Garis hijau di tepi card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    background-color: #ffffff; /* Warna asli card */
+        border: 1px solid #0e6336; /* Garis hijau di tepi card */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        background-color: #ffffff; /* Warna asli card */
     }
 
     .hover-card:hover {
@@ -84,6 +84,33 @@
     .card-img-top {
         height: 170px; /* Atur tinggi gambar */
         width: 170px; /* Atur lebar gambar agar sesuai dengan lebar card */
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+        .card-img-top {
+            height: 120px; /* Atur ulang tinggi gambar untuk perangkat lebih kecil */
+            width: 120px; /* Atur ulang lebar gambar untuk perangkat lebih kecil */
+        }
+
+        .card-title {
+            font-size: 1.1rem; /* Ukuran judul lebih kecil untuk perangkat lebih kecil */
+        }
+
+        .card-text {
+            font-size: 0.75rem; /* Ukuran teks lebih kecil untuk perangkat lebih kecil */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .img-container {
+            height: 100px; /* Atur ulang tinggi kontainer gambar untuk perangkat sangat kecil */
+        }
+
+        .card-img-top {
+            height: 100px; /* Atur ulang tinggi gambar untuk perangkat sangat kecil */
+            width: 100px; /* Atur ulang lebar gambar untuk perangkat sangat kecil */
+        }
     }
 </style>
 @endsection

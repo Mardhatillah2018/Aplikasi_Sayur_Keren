@@ -7,30 +7,31 @@
                 <div class="col-md-10 col-lg-8 mb-4">
                     <div class="card shadow-lg rounded" style="border: none;">
                         <div class="card-body">
-                            <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Detail Pesanan</h4>
+                            <div class="table-responsive">
+                            <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D; font-size: 1rem;">Detail Pesanan</h4>
                             <div class="mb-4">
-                                <p><strong>Tanggal Pemesanan:</strong> {{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d F Y') }}</p>
+                                <p style="font-size: 0.975rem;"><strong>Tanggal Pemesanan:</strong> {{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d F Y') }}</p>
                             </div>
 
                             <hr style="border-top: 2px solid #0B773D; margin-bottom: 20px;">
 
                             <!-- Data Pelanggan -->
                             <div class="mb-4">
-                                <h5 class="font-weight-bold">Data Pelanggan</h5>
+                                <h5 class="font-weight-bold" style="font-size: 0.975rem;">Data Pelanggan</h5>
                                 @if($checkout->pengguna)
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-                                                <td><strong>Username:</strong></td>
-                                                <td>{{ $checkout->pengguna->username }}</td>
+                                                <td style="font-size: 0.875rem;"><strong>Username:</strong></td>
+                                                <td style="font-size: 0.875rem;">{{ $checkout->pengguna->username }}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>No. HP:</strong></td>
-                                                <td>{{ $checkout->pengguna->nohp }}</td>
+                                                <td style="font-size: 0.875rem;"><strong>No. HP:</strong></td>
+                                                <td style="font-size: 0.875rem;">{{ $checkout->pengguna->nohp }}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Alamat Pengiriman:</strong></td>
-                                                <td>{{ $checkout->alamat_pengiriman }}</td>
+                                                <td style="font-size: 0.875rem;"><strong>Alamat Pengiriman:</strong></td>
+                                                <td style="font-size: 0.875rem;">{{ $checkout->alamat_pengiriman }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -43,23 +44,23 @@
 
                             <!-- Data Produk yang Dibeli -->
                             <div class="mb-4">
-                                <h5 class="font-weight-bold">Data Produk</h5>
+                                <h5 class="font-weight-bold" style="font-size: 0.975rem;">Data Produk</h5>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Produk</th>
-                                            <th scope="col">Jumlah</th>
-                                            <th scope="col">Harga</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col" class="text-center" style="font-size: 0.875rem;">Produk</th>
+                                            <th scope="col" class="text-center" style="font-size: 0.875rem;">Jumlah</th>
+                                            <th scope="col" class="text-center" style="font-size: 0.875rem;">Harga</th>
+                                            <th scope="col" class="text-center" style="font-size: 0.875rem;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($produkDetails as $produk)
                                         <tr>
-                                            <td>{{ $produk->nama }}</td>
-                                            <td>{{ $produk->jumlah }}</td>
-                                            <td>Rp {{ number_format($produk->harga, 2, ',', '.') }}</td>
-                                            <td>Rp {{ number_format($produk->total, 2, ',', '.') }}</td>
+                                            <td style="font-size: 0.875rem;">{{ $produk->nama }}</td>
+                                            <td style="font-size: 0.875rem;">{{ $produk->jumlah }}</td>
+                                            <td style="font-size: 0.875rem;">Rp {{ number_format($produk->harga, 2, ',', '.') }}</td>
+                                            <td style="font-size: 0.875rem;">Rp {{ number_format($produk->total, 2, ',', '.') }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -69,16 +70,16 @@
                             <hr style="border-top: 2px solid #0B773D; margin-bottom: 20px;">
 
                             <div class="mb-4 text-left">
-                                <h6 class="font-weight-bold">Belanja: <span>Rp {{ number_format($totalBelanja, 0, ',', '.') }}</span></h6>
+                                <h6 class="font-weight-bold" style="font-size: 0.975rem;">Belanja: <span>Rp {{ number_format($totalBelanja, 0, ',', '.') }}</span></h6>
                             </div>
 
                             <!-- Ongkir -->
                             <div class="mb-4 text-left">
-                                <h6 class="font-weight-bold">Ongkir: <span>Rp {{ number_format($ongkir, 0, ',', '.') }}</span></h6>
+                                <h6 class="font-weight-bold" style="font-size: 0.975rem;">Ongkir: <span>Rp {{ number_format($ongkir, 0, ',', '.') }}</span></h6>
                             </div>
 
                             <!-- Diskon -->
-                            <h6 class="font-weight-bold">
+                            <h6 class="font-weight-bold" style="font-size: 0.975rem;">
                                 Diskon: <span style="color: #D32F2F;">
                                     Rp {{ number_format($diskonAmount, 0, ',', '.') }}
                                 </span>
@@ -106,6 +107,7 @@
                             <div class="text-center mt-3">
                                 <p><small>Terima kasih telah berbelanja di Sayur Keren!</small></p>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

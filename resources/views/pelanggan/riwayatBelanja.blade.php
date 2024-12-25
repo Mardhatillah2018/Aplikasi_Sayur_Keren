@@ -8,13 +8,14 @@
             <div class="col-md-12 col-lg-12 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
-                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Riwayat Belanja</h4>
+                        <div class="table-responsive">
+                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D; font-size: 1rem;">Riwayat Belanja</h4>
 
                         <form method="GET" action="{{ route('riwayat-belanja') }}">
                             <div class="row mb-4">
                                 <div class="col-md-4">
                                     {{-- <label for="status" class="form-label">Filter Status</label> --}}
-                                    <select id="status" name="status" class="form-select">
+                                    <select id="status" name="status" class="form-select" style="font-size: 0.880rem;">
                                         <option value="">Semua Status</option>
                                         <option value="pesanan diterima" {{ request('status') == 'pesanan diterima' ? 'selected' : '' }}>Pesanan Diterima</option>
                                         <option value="diproses" {{ request('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
@@ -24,7 +25,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     {{-- <label for="bulan" class="form-label">Filter Bulan</label> --}}
-                                    <select id="bulan" name="bulan" class="form-select">
+                                    <select id="bulan" name="bulan" class="form-select" style="font-size: 0.880rem;">
                                         <option value="">Semua Bulan</option>
                                         @for ($i = 1; $i <= 12; $i++)
                                             <option value="{{ $i }}" {{ request('bulan') == $i ? 'selected' : '' }}>
@@ -35,7 +36,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     {{-- <label for="tahun" class="form-label">Filter Tahun</label> --}}
-                                    <select id="tahun" name="tahun" class="form-select">
+                                    <select id="tahun" name="tahun" class="form-select" style="font-size: 0.880rem;">
                                         <option value="">Semua Tahun</option>
                                         @foreach(range(date('Y'), date('Y') - 5) as $year)
                                             <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
@@ -43,7 +44,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2 d-flex align-items-end">
-                                    <button type="submit" class="btn btn-success w-100">Terapkan</button>
+                                    <button type="submit" class="btn btn-success w-100" style="font-size: 0.880rem;">Terapkan</button>
                                 </div>
                             </div>
                         </form>
@@ -53,20 +54,20 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Tanggal Pemesanan</th>
-                                        <th scope="col">Total Harga</th>
-                                        <th scope="col">Bukti Transfer</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Pesan</th>
-                                        <th scope="col">Ulasan</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Tanggal Pemesanan</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Total Harga</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Bukti Transfer</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Status</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Pesan</th>
+                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($riwayatBelanja as $checkout)
                                     <tr id="row-{{ $checkout->id }}">
-                                        <td><a href="{{ route('checkout.detail', $checkout->id) }}" style="text-decoration: none; color: #0B773D;" title="Lihat Detail">{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d F Y') }}</a></td>
-                                        <td>Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
-                                        <td id="button-cell-{{ $checkout->id }}">
+                                        <td class="text-center" style="font-size: 0.875rem;"><a href="{{ route('checkout.detail', $checkout->id) }}" style="text-decoration: none; color: #0B773D;" title="Lihat Detail">{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d F Y') }}</a></td>
+                                        <td class="text-center" style="font-size: 0.875rem;">Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
+                                        <td id="button-cell-{{ $checkout->id }}" class="text-center" style="font-size: 0.875rem;">
                                             @if($checkout->bukti_transfer)
                                                 <button class="btn btn-success"
                                                         style="font-size: 13px; padding: 5px 5px;"
@@ -87,7 +88,7 @@
                                             @endif
                                         </td>
 
-                                        <td>
+                                        <td class="text-center" style="font-size: 0.875rem;">
                                             @if($checkout->status == 'pesanan diterima')
                                                 <span class="badge" style="background-color: #a72c28; color: white;">Pesanan Diterima</span> <!-- Hijau untuk pesanan diterima -->
                                             @elseif($checkout->status == 'diproses')
@@ -98,7 +99,7 @@
                                                 <span class="badge" style="background-color: #0b773d; color: white;">Selesai</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($checkout->catatan_admin)
                                                 <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal-{{ $checkout->id }}" title="Lihat Pesan">
                                                     <i class="fas fa-envelope"></i>
@@ -125,7 +126,7 @@
                                                 <span class="small text-muted">-</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if($checkout->ulasan)
                                                 <!-- Tombol untuk melihat ulasan -->
                                                 <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewUlasanModal{{ $checkout->id }}" title="Lihat Ulasan">
@@ -157,7 +158,7 @@
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="ulasanModalLabel">Beri Ulasan</h5>
+                                                                <h5 class="modal-title" id="ulasanModalLabel" style="font-size: 0.880rem;">Beri Ulasan</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -174,12 +175,11 @@
                                                 </div>
                                             @endif
                                         </td>
-
-
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>

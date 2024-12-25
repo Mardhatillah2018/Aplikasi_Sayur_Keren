@@ -20,6 +20,7 @@
             font-weight: 600;
             border-radius: 20px; /* Bentuk tombol bulat */
             transition: all 0.3s ease-in-out; /* Efek transisi saat hover */
+            margin-right: 10px;
         }
 
         .btn-logout:hover {

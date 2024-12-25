@@ -7,38 +7,39 @@
             <div class="col-md-10 col-lg-8 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
-                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">Checkout</h4>
+                        <div class="table-responsive">
+                        <h4 class="mt-1 text-center" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D; font-size: 1rem;">Checkout</h4>
 
                         <hr style="border-top: 2px solid #0B773D; margin-bottom: 20px;">
 
                         <!-- Data Pelanggan -->
                         <div class="mb-3">
-                            <h5 class="font-weight-bold">Data Pelanggan</h5>
-                            <p style="padding-left: 20px;" class="mb-1"><strong>Username:</strong> {{ $user->username }}</p>
-                            <p style="padding-left: 20px;" class="mb-1"><strong>Nomor HP:</strong> {{ $user->nohp ?? 'Nomor HP tidak tersedia' }}</p>
+                            <h5 class="font-weight-bold" style="font-size: 0.975rem;">Data Pelanggan</h5>
+                            <p style="padding-left: 20px; font-size: 0.875rem;" class="mb-1"><strong>Username:</strong> {{ $user->username }}</p>
+                            <p style="padding-left: 20px; font-size: 0.875rem;" class="mb-1"><strong>Nomor HP:</strong> {{ $user->nohp ?? 'Nomor HP tidak tersedia' }}</p>
                         </div>
 
                         <hr style="border-top: 2px solid #0B773D; margin-bottom: 20px;">
 
                         <!-- Data Produk -->
                         <div class="mb-3">
-                            <h5 class="font-weight-bold">Data Produk</h5>
+                            <h5 class="font-weight-bold" style="font-size: 0.975rem;">Data Produk</h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Produk</th>
-                                        <th>Jumlah</th>
-                                        <th>Harga</th>
+                                        <th class="text-center" style="font-size: 0.875rem;">Produk</th>
+                                        <th class="text-center" style="font-size: 0.875rem;">Jumlah</th>
+                                        <th class="text-center" style="font-size: 0.875rem;">Harga</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($keranjangs as $keranjang)
                                     <tr>
-                                        <td>{{ $keranjang->produk->nama }}</td>
-                                        <td>{{ $keranjang->jumlah }}</td>
-                                        <td>Rp {{ number_format($keranjang->harga, 2, ',', '.') }}</td>
-                                        <td>Rp {{ number_format($keranjang->jumlah * $keranjang->harga, 2, ',', '.') }}</td>
+                                        <td class="text-center" style="font-size: 0.875rem;">{{ $keranjang->produk->nama }}</td>
+                                        <td class="text-center" style="font-size: 0.875rem;">{{ $keranjang->jumlah }}</td>
+                                        <td class="text-center" style="font-size: 0.875rem;">Rp {{ number_format($keranjang->harga, 2, ',', '.') }}</td>
+                                        <td class="text-center" style="font-size: 0.875rem;">Rp {{ number_format($keranjang->jumlah * $keranjang->harga, 2, ',', '.') }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -48,20 +49,20 @@
                         <hr style="border-top: 2px solid #0B773D; margin-bottom: 20px;">
 
                         <div class="mb-4">
-                            <h5 class="font-weight-bold">Alamat Pengiriman</h5>
+                            <h5 class="font-weight-bold" style="font-size: 0.975rem;">Alamat Pengiriman</h5>
                             <p style="font-size: 0.75rem; color: red;">* Pilih lokasi Anda untuk menghitung ongkos kirim.</p>
                             <div id="map" style="height: 300px; border: 1px solid #0B773D;"></div>
                             <form action="{{ route('checkout.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="search">Cari Alamat:</label>
+                                    <label for="search" style="font-size: 0.975rem;">Cari Alamat:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">
                                                 <i class="bi bi-search"></i> <!-- Ikon pencarian dari Bootstrap Icons -->
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control" id="search" placeholder="Masukkan alamat" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" id="search" style="font-size: 0.975rem;" placeholder="Masukkan alamat" aria-describedby="basic-addon1">
                                     </div>
                                     <ul id="searchResults" class="list-group mt-1" style="display: none; max-height: 200px; overflow-y: auto;"></ul>
                                 </div>
@@ -69,10 +70,10 @@
                                 <div class="mb-3">
                                     <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude') }}">
                                     <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude') }}">
-                                    <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Alamat yang dipilih" readonly>
+                                    <input type="text" id="alamat" name="alamat" style="font-size: 0.975rem;" class="form-control" placeholder="Alamat yang dipilih" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-primary" id="calculateDistance">Hitung Ongkir</button>
+                                    <button type="button" class="btn btn-primary" id="calculateDistance" style="font-size: 0.875rem;">Hitung Ongkir</button>
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -269,6 +270,7 @@
                                 });
                             });
                         </script>
+                    </div>
                     </div>
                 </div>
             </div>

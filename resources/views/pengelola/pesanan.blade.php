@@ -9,7 +9,8 @@
             <h5 class="mb-0">📦 Pesanan Masuk</h5>
         </div>
         <div class="card-body">
-            <table class="table table-hover table-striped align-middle">
+            <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle table-responsive">
                 <thead class="table-success">
                     <tr>
                         <th>No</th>
@@ -62,11 +63,6 @@
                                 @method('PUT')
                                 <!-- Tombol atas -->
                                 <div class="d-flex gap-1">
-                                    {{-- <button type="submit" name="status" value="pesanan diterima"
-                                        class="btn btn-sm {{ $checkout->status == 'pesanan diterima' ? 'btn-primary' : 'btn-outline-primary' }} {{ in_array($checkout->status, ['diproses', 'dikirim', 'selesai']) ? 'disabled' : '' }} "
-                                        title="Diterima">
-                                        <i class="fas fa-check-circle"></i>
-                                    </button> --}}
                                     <button type="submit" name="status" value="diproses"
                                         class="btn btn-sm {{ $checkout->status == 'diproses' ? 'btn-warning' : 'btn-outline-warning' }} {{ in_array($checkout->status, ['dikirim', 'selesai']) ? 'disabled' : '' }}"
                                         title="Diproses" onclick="return confirm('Proses Pesanan ini?')">
@@ -80,12 +76,6 @@
                                         title="Dikirim" onclick="return confirm('Kirim Pesanan ini?')">
                                         <i class="fas fa-shipping-fast"></i>
                                     </button>
-                                    {{-- <button type="submit" name="status" value="selesai"
-                                        class="btn btn-sm {{ $checkout->status == 'selesai' ? 'btn-success' : 'btn-outline-success' }} "
-                                        {{ $checkout->status == 'selesai' ? 'disabled' : '' }}
-                                        title="Selesai">
-                                        <i class="fas fa-check"></i>
-                                    </button> --}}
                                 </div>
                             </form>
                         </td>
@@ -186,14 +176,14 @@
                         </div>
                     </div>
 
-
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted">Tidak ada pesanan masuk.</td>
+                        <td colspan="8" class="text-center text-muted">Tidak ada pesanan masuk.</td>
                     </tr>
                     @endforelse
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 

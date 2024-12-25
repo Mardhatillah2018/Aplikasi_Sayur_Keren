@@ -85,6 +85,36 @@
 </section>
 
 <style>
+
+    /* Responsive adjustments for category images */
+@media (max-width: 1200px) {
+    .img-category {
+        width: 80px; /* Ukuran lebih kecil untuk layar besar */
+        height: 80px;
+    }
+}
+
+@media (max-width: 992px) {
+    .img-category {
+        width: 70px; /* Ukuran lebih kecil untuk layar sedang */
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .img-category {
+        width: 60px; /* Ukuran lebih kecil untuk layar kecil */
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .img-category {
+        width: 50px; /* Ukuran terkecil untuk layar sangat kecil */
+        height: 50px;
+    }
+}
+
 /* Carousel Banner Styles
 .carousel-item img {
     width: 100%;
