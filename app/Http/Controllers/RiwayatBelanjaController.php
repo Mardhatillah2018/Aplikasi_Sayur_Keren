@@ -11,21 +11,14 @@ class RiwayatBelanjaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Checkout::where('user_id', Auth::id());
+        $query = Checkout::where('user_id', Auth::id()); // Filter berdasarkan user_id
 
-        // Filter berdasarkan status
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-
-        // Filter berdasarkan bulan
-        if ($request->filled('bulan')) {
-            $query->whereMonth('tanggal_pemesanan', $request->bulan);
-        }
-
-        // Filter berdasarkan tahun
-        if ($request->filled('tahun')) {
-            $query->whereYear('tanggal_pemesanan', $request->tahun);
+        // Filter berdasarkan tab
+        if ($request->filled('tab')) {
+            $query->where('status', $request->tab); // Menggunakan nilai tab langsung
+        } else {
+            // Jika tidak ada tab yang dipilih, tampilkan pesanan diterima sebagai default
+            $query->where('status', 'pesanan diterima');
         }
 
         // Ambil data
