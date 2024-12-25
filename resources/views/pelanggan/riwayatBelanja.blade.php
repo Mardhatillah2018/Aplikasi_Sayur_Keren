@@ -61,7 +61,6 @@
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Bukti Transfer</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Status</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Pesan</th>
-                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,55 +125,6 @@
                                                 </div>
                                             @else
                                                 <span class="small text-muted">-</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if($checkout->ulasan)
-                                                <!-- Tombol untuk melihat ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewUlasanModal{{ $checkout->id }}" title="Lihat Ulasan">
-                                                    <i class="fas fa-eye"></i> Lihat Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk melihat ulasan -->
-                                                <div class="modal fade" id="viewUlasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="viewUlasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewUlasanModalLabel">Ulasan Anda</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>{{ $checkout->ulasan }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <!-- Tombol untuk memberi ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#ulasanModal{{ $checkout->id }}" title="Beri Ulasan">
-                                                    <i class="fas fa-star"></i> Beri Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk memberi ulasan -->
-                                                <div class="modal fade" id="ulasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="ulasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="ulasanModalLabel" style="font-size: 0.880rem;">Beri Ulasan</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route('riwayatBelanja.simpanUlasan', $checkout->id) }}" method="POST">
-                                                                    @csrf
-                                                                    <div class="mb-3">
-                                                                        <textarea class="form-control" id="ulasan" name="ulasan" rows="4" placeholder="Ketik Ulasan" required></textarea>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success">Simpan Ulasan</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endif
                                         </td>
                                     </tr>
@@ -200,7 +150,6 @@
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Bukti Transfer</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Status</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Pesan</th>
-                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -265,55 +214,6 @@
                                                 </div>
                                             @else
                                                 <span class="small text-muted">-</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if($checkout->ulasan)
-                                                <!-- Tombol untuk melihat ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewUlasanModal{{ $checkout->id }}" title="Lihat Ulasan">
-                                                    <i class="fas fa-eye"></i> Lihat Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk melihat ulasan -->
-                                                <div class="modal fade" id="viewUlasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="viewUlasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewUlasanModalLabel">Ulasan Anda</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>{{ $checkout->ulasan }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <!-- Tombol untuk memberi ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#ulasanModal{{ $checkout->id }}" title="Beri Ulasan">
-                                                    <i class="fas fa-star"></i> Beri Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk memberi ulasan -->
-                                                <div class="modal fade" id="ulasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="ulasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="ulasanModalLabel" style="font-size: 0.880rem;">Beri Ulasan</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route('riwayatBelanja.simpanUlasan', $checkout->id) }}" method="POST">
-                                                                    @csrf
-                                                                    <div class="mb-3">
-                                                                        <textarea class="form-control" id="ulasan" name="ulasan" rows="4" placeholder="Ketik Ulasan" required></textarea>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success">Simpan Ulasan</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endif
                                         </td>
                                     </tr>
@@ -339,7 +239,6 @@
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Bukti Transfer</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Status</th>
                                         <th scope="col" class="text-center" style="font-size: 0.875rem;">Pesan</th>
-                                        <th scope="col" class="text-center" style="font-size: 0.875rem;">Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -404,55 +303,6 @@
                                                 </div>
                                             @else
                                                 <span class="small text-muted">-</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-center">
-                                            @if($checkout->ulasan)
-                                                <!-- Tombol untuk melihat ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#viewUlasanModal{{ $checkout->id }}" title="Lihat Ulasan">
-                                                    <i class="fas fa-eye"></i> Lihat Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk melihat ulasan -->
-                                                <div class="modal fade" id="viewUlasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="viewUlasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewUlasanModalLabel">Ulasan Anda</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>{{ $checkout->ulasan }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <!-- Tombol untuk memberi ulasan -->
-                                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#ulasanModal{{ $checkout->id }}" title="Beri Ulasan">
-                                                    <i class="fas fa-star"></i> Beri Ulasan
-                                                </button>
-
-                                                <!-- Modal untuk memberi ulasan -->
-                                                <div class="modal fade" id="ulasanModal{{ $checkout->id }}" tabindex="-1" aria-labelledby="ulasanModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="ulasanModalLabel" style="font-size: 0.880rem;">Beri Ulasan</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route('riwayatBelanja.simpanUlasan', $checkout->id) }}" method="POST">
-                                                                    @csrf
-                                                                    <div class="mb-3">
-                                                                        <textarea class="form-control" id="ulasan" name="ulasan" rows="4" placeholder="Ketik Ulasan" required></textarea>
-                                                                    </div>
-                                                                    <button type="submit" class="btn btn-success">Simpan Ulasan</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             @endif
                                         </td>
                                     </tr>
@@ -558,7 +408,10 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="viewUlasanModalLabel">Ulasan Anda</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <!-- Tombol "Tutup" -->
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal" style="color: gray; border: none;">
+                                                                    Tutup
+                                                                </button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p>{{ $checkout->ulasan }}</p>
@@ -566,6 +419,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             @else
                                                 <!-- Tombol untuk memberi ulasan -->
                                                 <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#ulasanModal{{ $checkout->id }}" title="Beri Ulasan">
@@ -578,7 +432,10 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="ulasanModalLabel" style="font-size: 0.880rem;">Beri Ulasan</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <!-- Tombol "Tutup" -->
+                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal" style="color: gray; border: none;">
+                                                                    Tutup
+                                                                </button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="{{ route('riwayatBelanja.simpanUlasan', $checkout->id) }}" method="POST">
@@ -592,6 +449,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             @endif
                                         </td>
                                     </tr>
