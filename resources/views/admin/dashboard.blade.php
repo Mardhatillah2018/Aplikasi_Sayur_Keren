@@ -71,7 +71,7 @@
                                 <h1 class="h3 num-4">
                                     {{ $jumlahProduk }}
                                 </h1>
-                                <p style="color: #07582d;">Jumlah Produk</p> <!-- Tulisan jumlah produk dengan warna #07582d -->
+                                <p style="color: #07582d;">Jumlah Produk</p>
                             </div>
                         </div>
                         <!-- end top -->
@@ -80,6 +80,7 @@
             </a>
             <div class="footer bg-white p-1 mx-4 border border-t-0 rounded rounded-t-none"></div>
         </div>
+
         <!-- Card untuk jumlah pelanggan -->
         <div class="report-card">
             <a href="{{ route('admin.admin-pelanggan.index') }}" class="text-decoration-none">
@@ -148,9 +149,9 @@
             Rp {{ number_format($totalPenjualan, 0, ',', '.') }}
         </h3>
     </div>
-
-  </div>
+</div>
   <!-- end content -->
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('grafikPenjualan').getContext('2d');

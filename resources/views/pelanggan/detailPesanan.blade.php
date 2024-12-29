@@ -1,6 +1,6 @@
-    @extends('layouts.main')
+@extends('layouts.main')
 
-    @section('content')
+@section('content')
     <section class="mt-5">
         <div class="container-fluid">
             <div class="row d-flex justify-content-center align-items-center">
@@ -118,18 +118,18 @@
             </div>
         </div>
     </section>
-    @endsection
+@endsection
 
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh; /* Membuat body mengisi seluruh tinggi layar */
-            margin: 0;
-        }
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Membuat body mengisi seluruh tinggi layar */
+        margin: 0;
+    }
 
-        main {
-            flex-grow: 1; /* Membuat main mengambil ruang sisa */
+    main {
+        flex-grow: 1; /* Membuat main mengambil ruang sisa */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -186,4 +186,4 @@
             border-left: 1px solid #dee2e6; /* Garis vertikal di kiri setiap sel */
             border-right: 1px solid #dee2e6; /* Garis vertikal di kanan setiap sel */
         }
-    </style>
+</style>

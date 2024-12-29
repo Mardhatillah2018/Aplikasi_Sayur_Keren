@@ -10,7 +10,6 @@
 <div class="d-flex justify-content-between mb-3">
     <!-- Tombol tambah produk -->
     <a href="/admin-produk/create" class="btn btn-primary mb-3" style="background-color: #0B773D; border-color: #0B773D; white-space: nowrap;">Tambah Produk</a>
-
     <!-- Form Pencarian -->
     <form action="{{ url('/admin-produk') }}" method="GET" class="d-flex">
         <input type="text" name="search" class="form-control me-2" placeholder="Cari Produk" value="{{ request()->input('search') }}" style="width: 250px;">
@@ -66,7 +65,7 @@
                         <form action="/admin-produk/{{ $produk->id }}" method="post" class="d-inline">
                             @method('DELETE')
                             @csrf
-                            <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')">
+                            <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus produk ini?')">
                                 <i class="bi bi-trash"></i> Hapus
                             </button>
                         </form>

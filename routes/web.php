@@ -24,7 +24,6 @@ use App\Models\Produk;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
@@ -33,6 +32,7 @@ Route::middleware(['auth', 'role:admin,super_admin'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(['auth', 'role:admin']);
 
+// HALAMAN DEPAN
 Route::get('/semuaproduk', [FrontendController::class, 'index'])->name('semuaproduk');
 Route::get('/semuaproduk/search', [FrontendController::class, 'search'])->name('frontend.search');
 Route::get('/terbaru', [FrontendController::class, 'terbaru']);
@@ -40,13 +40,15 @@ Route::get('/tentang', function () {
     return view('landing_page.tentang');
 });
 
-
+// REGISTER
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
+// LOGIN
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
+// LOGOUT
 Route::post('/logout', [LoginController::class, 'logout']);
 
 //DETAIL PELANGGAN
@@ -98,15 +100,12 @@ Route::post('/upload-bukti/{id}', [RiwayatBelanjaController::class, 'uploadBukti
 
 //PENJUALAN
 Route::resource('/admin-penjualan', PenjualanController::class)->middleware(['auth', 'role:admin']);
-//Route::get('/admin-penjualan/cetak-pdf', [PenjualanController::class, 'cetakPdf'])->name('admin-penjualan.cetakPdf');
 Route::get('/cetak-pdf/penjualan', [PenjualanController::class, 'cetakPdf']);
 
 
 // PENGELOLA
 Route::get('/pesanan', [CheckoutController::class, 'showPesanan'])->middleware(['auth', 'role:pengelola']);
-// Route::put('/checkouts/{id}/update-status', [CheckoutController::class, 'updateStatus'])->name('checkouts.updateStatus')->middleware(['auth', 'role:pengelola']);
 Route::post('/checkouts/{id}/send-message', [CheckoutController::class, 'sendMessage'])->name('checkouts.sendMessage');
-//Route::get('/pesanan', [CheckoutController::class, 'index'])->name('checkouts.index')->middleware(['auth', 'role:pengelola']);
 Route::get('/pesanan/{id}', [CheckoutController::class, 'show'])->name('checkouts.show')->middleware(['auth', 'role:pengelola']);
 Route::post('/pesanan/{id}/confirm', [CheckoutController::class, 'confirm'])->name('checkouts.confirm')->middleware(['auth', 'role:pengelola']);
 

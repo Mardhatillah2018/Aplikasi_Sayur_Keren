@@ -13,6 +13,10 @@
                 <table class="table table-bordered table-sm">
                     <tbody>
                         <tr>
+                            <th>Tanggal Pemesanan</th>
+                            <td>{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d-m-Y') }}</td>
+                        </tr>
+                        <tr>
                             <th>User ID</th>
                             <td>{{ $checkout->user_id }}</td>
                         </tr>
@@ -21,7 +25,7 @@
                             <td>{{ $checkout->alamat_pengiriman }}</td>
                         </tr>
                         <tr>
-                            <th>Total Harga</th>
+                            <th>Total Pembayaran</th>
                             <td>Rp {{ number_format($checkout->total_harga, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
@@ -32,14 +36,11 @@
                             <th>Diskon</th>
                             <td>Rp {{ number_format($checkout->diskon, 0, ',', '.') }}</td>
                         </tr>
-                        <tr>
-                            <th>Tanggal Pemesanan</th>
-                            <td>{{ \Carbon\Carbon::parse($checkout->tanggal_pemesanan)->format('d-m-Y') }}</td>
-                        </tr>
-                        <tr>
+
+                        {{-- <tr>
                             <th>Status</th>
                             <td><span class="badge bg-info">{{ $checkout->status }}</span></td>
-                        </tr>
+                        </tr> --}}
                         <tr>
                             <th>Ulasan</th>
                             <td>{{ $checkout->ulasan }}</td>
@@ -90,7 +91,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="4" class="text-end">Total Harga Produk</th>
+                            <th colspan="4" class="text-end">Belanja</th>
                             <th class="text-end">Rp {{ number_format($total, 0, ',', '.') }}</th>
                         </tr>
                     </tfoot>

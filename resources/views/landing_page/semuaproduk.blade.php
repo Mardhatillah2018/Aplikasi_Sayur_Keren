@@ -18,7 +18,6 @@
     </form>
 </h5>
 
-
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
         <div class="product-grid row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6">
@@ -217,33 +216,32 @@
     transition: background-color 0.3s, border-color 0.3s; /* Animasi transisi warna */
     appearance: none; /* Menghilangkan gaya default dropdown di beberapa browser */
     cursor: pointer; /* Menambahkan kursor pointer agar lebih interaktif */
-}
+    }
 
-.custom-select:focus {
-    outline: none;
-    border-color: #0e6336; /* Border lebih gelap saat dropdown dipilih */
-    background-color: #e9ecef; /* Latar belakang lebih terang saat fokus */
-}
+    .custom-select:focus {
+        outline: none;
+        border-color: #0e6336; /* Border lebih gelap saat dropdown dipilih */
+        background-color: #e9ecef; /* Latar belakang lebih terang saat fokus */
+    }
 
-.placeholder {
-    color: #6c757d; /* Warna teks placeholder */
-}
+    .placeholder {
+        color: #6c757d; /* Warna teks placeholder */
+    }
 
-.custom-select option {
-    background-color: #fff; /* Latar belakang pilihan opsi */
-    padding: 8px 15px;
-    transition: background-color 0.3s; /* Animasi transisi warna saat hover */
-}
+    .custom-select option {
+        background-color: #fff; /* Latar belakang pilihan opsi */
+        padding: 8px 15px;
+        transition: background-color 0.3s; /* Animasi transisi warna saat hover */
+    }
 
-.custom-select option:hover {
-    background-color: #f1f1f1; /* Warna saat hover pada opsi */
-}
+    .custom-select option:hover {
+        background-color: #f1f1f1; /* Warna saat hover pada opsi */
+    }
 
-.custom-select option:checked {
-    background-color: #0e6336; /* Latar belakang pilihan terpilih */
-    color: #fff; /* Warna teks pilihan terpilih */
-}
-
+    .custom-select option:checked {
+        background-color: #0e6336; /* Latar belakang pilihan terpilih */
+        color: #fff; /* Warna teks pilihan terpilih */
+    }
 </style>
 
 @endsection

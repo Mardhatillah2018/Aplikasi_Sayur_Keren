@@ -40,7 +40,7 @@
                             <form action="/admin-pelanggan/{{ $pengguna->id }}" method="post" class="d-inline">
                                 @method('DELETE')
                                 @csrf
-                                <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data ini?')"><i class="bi bi-trash"></i> Hapus</button>
+                                <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data pelanggan ini?')"><i class="bi bi-trash"></i> Hapus</button>
                             </form>
                         </td>
                     </tr>

@@ -89,7 +89,6 @@
                 <th>Diskon</th>
                 <th>Tanggal Mulai</th>
                 <th>Tanggal Berakhir</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -100,18 +99,6 @@
                 <td>{{ $promo->diskon }}%</td>
                 <td>{{ $promo->tanggal_mulai }}</td>
                 <td>{{ $promo->tanggal_berakhir }}</td>
-                <td class="text-center">
-                    <a href="/admin-promo/{{ $promo->id }}/edit" title="Edit Data" class="btn btn-warning btn-sm me-2">
-                        <i class="bi bi-pencil-square"></i> Edit
-                    </a>
-                    <form action="/admin-promo/{{ $promo->id }}" method="POST" class="d-inline">
-                        @method('DELETE')
-                        @csrf
-                        <button title="Hapus Data" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus promo ini?')">
-                            <i class="bi bi-trash"></i> Hapus
-                        </button>
-                    </form>
-                </td>
             </tr>
             @empty
             <tr>

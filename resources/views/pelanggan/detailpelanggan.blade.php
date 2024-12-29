@@ -12,7 +12,6 @@
 
                         <div class="text-center mb-2">
                             <i class="bi bi-person-fill" style="font-size: 40px; color: #0B773D;"></i>
-                            {{-- <h5 style="color: #0B773D;">{{ session('username') }}</h5> --}}
                         </div>
 
                         <div class="mb-3">
@@ -50,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- Card Keranjang Belanja Anda -->
+            <!-- Card Keranjang Belanja -->
             <div class="col-md-12 col-lg-10 mb-4">
                 <div class="card shadow-lg rounded" style="border: none;">
                     <div class="card-body">
@@ -94,40 +93,6 @@
 
         </div>
     </div>
-
-    {{-- <!-- Modal Edit Profil -->
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('update-profile') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ session('username') }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ session('email') }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nohp" class="form-label">No HP</label>
-                            <input type="text" class="form-control" id="nohp" name="nohp" value="{{ session('nohp') }}" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <br>
 </section>
 @endsection

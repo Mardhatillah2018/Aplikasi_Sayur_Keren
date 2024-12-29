@@ -11,9 +11,9 @@
                         <div style="height: 1px; background-color: #0B773D; width: 50%; margin: 10px auto;"></div>
                         <h4 class="mt-1" style="font-family: 'Poppins', sans-serif; font-weight: 600; color: #0B773D;">MASUK</h4>
                         @if (session('pesan'))
-                        <div class="alert alert-success">
-                            {{ session('pesan') }}
-                        </div>
+                            <div class="alert alert-success">
+                                {{ session('pesan') }}
+                            </div>
                         @endif
                         <form method="POST" action="/login">
                             @csrf
@@ -45,7 +45,6 @@
                             </div>
                             <button class="btn w-100 py-2" type="submit" style="background-color: #0B773D; border-color: #0B773D; color: white;">Masuk</button>
                             <div class="text-center">Belum punya akun? <a href="/register" style="color: #0B773D;">Daftar</a></div>
-                            {{-- <p class="mt-3 mb-3 text-body-secondary text-center">&copy; <?= date('Y')?></p> --}}
                         </form>
                     </div>
                 </div>

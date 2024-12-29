@@ -187,7 +187,7 @@
         filter: invert(1); /* Membuat tombol close berwarna putih */
     }
 
-    /* Styling untuk list */
+    /* style untuk list */
     .offcanvas-body ul {
         padding-left: 0; /* Menghapus padding default */
     }

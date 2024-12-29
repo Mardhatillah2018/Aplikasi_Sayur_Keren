@@ -470,39 +470,38 @@
 <script>
     // Fungsi untuk meng-upload bukti transfer
     function uploadBukti(checkoutId) {
-    var fileInput = document.getElementById('fileInput' + checkoutId);
-    var formData = new FormData();
-    formData.append('bukti_transfer', fileInput.files[0]);
-    formData.append('_token', '{{ csrf_token() }}');
+        var fileInput = document.getElementById('fileInput' + checkoutId);
+        var formData = new FormData();
+        formData.append('bukti_transfer', fileInput.files[0]);
+        formData.append('_token', '{{ csrf_token() }}');
 
-    fetch('/upload-bukti/' + checkoutId, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Tampilkan notifikasi berhasil
-            alert('Bukti transfer berhasil diupload!');
+        fetch('/upload-bukti/' + checkoutId, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Tampilkan notifikasi berhasil
+                alert('Bukti transfer berhasil diupload!');
 
-            // Ubah tombol menjadi "Lihat Bukti"
-            var buttonCell = document.getElementById('button-cell-' + checkoutId);
-            buttonCell.innerHTML = `
-                <button class="btn btn-success" title="Lihat Bukti Transfer"
-                    onclick="window.open('${data.bukti_path}', '_blank')">
-                    Lihat Bukti
-                </button>
-            `;
-        } else {
-            alert('Terjadi kesalahan saat mengupload bukti transfer.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Gagal mengupload bukti transfer. Silakan coba lagi.');
-    });
-}
-
+                // Ubah tombol menjadi "Lihat Bukti"
+                var buttonCell = document.getElementById('button-cell-' + checkoutId);
+                buttonCell.innerHTML = `
+                    <button class="btn btn-success" title="Lihat Bukti Transfer"
+                        onclick="window.open('${data.bukti_path}', '_blank')">
+                        Lihat Bukti
+                    </button>
+                `;
+            } else {
+                alert('Terjadi kesalahan saat mengupload bukti transfer.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Gagal mengupload bukti transfer. Silakan coba lagi.');
+        });
+    }
 </script>
 
 <div class="d-flex justify-content-center">

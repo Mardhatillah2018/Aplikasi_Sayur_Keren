@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-                        <h2 class="section-title">Kategori</h2>
+                        <h4 class="section-title">Kategori</h4>
                         <div class="d-flex align-items-center">
                             <!-- Tombol Navigasi -->
                             <div class="swiper-buttons">

@@ -98,8 +98,13 @@
                                     <input type="hidden" id="totalPembayaranInput" name="total_pembayaran" value="0">
                                 </div>
                                 <div class="mt-3 text-center">
-                                    <button type="submit" class="btn w-100 py-2" style="background-color: #0B773D; border-color: #0B773D; color: white;">Pesan Sekarang</button>
+                                    <form id="order-form" method="POST" action="your-order-action">
+                                        @csrf
+                                        <button type="submit" class="btn w-100 py-2" style="background-color: #0B773D; border-color: #0B773D; color: white;"
+                                            onclick="return confirm('Apakah Anda yakin ingin membuat pesanan?')">Pesan Sekarang</button>
+                                    </form>
                                 </div>
+
                             </form>
                         </div>
 
