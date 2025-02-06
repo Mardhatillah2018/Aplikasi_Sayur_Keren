@@ -35,23 +35,23 @@
             text-align: center;
         }
         th:nth-child(1), td:nth-child(1) {
-            width: 6%;
+            width: 4%;
         }
         th:nth-child(2), td:nth-child(2) {
-            width: 15%;
+            width: 8%;
         }
         th:nth-child(3), td:nth-child(3) {
-            width: 20%;
+            width: 4%;
         }
         th:nth-child(4), td:nth-child(4) {
-            width: 24%;
+            width: 6%;
         }
         th:nth-child(5), td:nth-child(5) {
             width: 15%;
         }
-        th:nth-child(6), td:nth-child(6) {
+        /* th:nth-child(6), td:nth-child(6) {
             width: 20%;
-        }
+        } */
         .footer {
             text-align: center;
             margin-top: 20px;

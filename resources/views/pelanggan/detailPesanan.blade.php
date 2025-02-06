@@ -130,60 +130,60 @@
 
     main {
         flex-grow: 1; /* Membuat main mengambil ruang sisa */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .container-fluid {
-            margin-bottom: 0;
-        }
+    .container-fluid {
+        margin-bottom: 0;
+    }
 
-        .card {
-            margin-top: 10px; /* Mengurangi jarak atas dari card */
-            margin-bottom: 20px; /* Mengurangi jarak bawah dari card */
-        }
+    .card {
+        margin-top: 10px; /* Mengurangi jarak atas dari card */
+        margin-bottom: 20px; /* Mengurangi jarak bawah dari card */
+    }
 
-        .card-body {
-            padding: 1rem;
-        }
+    .card-body {
+        padding: 1rem;
+    }
 
-        .mb-4 {
-            margin-bottom: 15px;
-        }
+    .mb-4 {
+        margin-bottom: 15px;
+    }
 
-        .text-center {
-            margin-top: 20px;
-        }
+    .text-center {
+        margin-top: 20px;
+    }
 
         /* Styling untuk Data Pelanggan */
-        .table td, .table th {
-            vertical-align: middle;
-            text-align: left;
-        }
+    .table td, .table th {
+        vertical-align: middle;
+        text-align: left;
+    }
 
-        .table th {
-            background-color: #f8f9fa;
-            color: #0B773D;
-        }
+    .table th {
+        background-color: #f8f9fa;
+        color: #0B773D;
+    }
 
-        /* Border pada tabel dan kolom */
-        .table-bordered {
-            border: 1px solid #dee2e6;
-        }
+    /* Border pada tabel dan kolom */
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
 
-        .table-bordered td, .table-bordered th {
-            border: 1px solid #dee2e6;
-        }
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #dee2e6;
+    }
 
-        /* Styling untuk memastikan garis tabel terlihat baik */
-        .table-bordered th, .table-bordered td {
-            border-top: 1px solid #dee2e6; /* Garis horizontal di atas setiap sel */
-            border-bottom: 1px solid #dee2e6; /* Garis horizontal di bawah setiap sel */
-        }
+    /* Styling untuk memastikan garis tabel terlihat baik */
+    .table-bordered th, .table-bordered td {
+        border-top: 1px solid #dee2e6; /* Garis horizontal di atas setiap sel */
+        border-bottom: 1px solid #dee2e6; /* Garis horizontal di bawah setiap sel */
+    }
 
-        .table-bordered td {
-            border-left: 1px solid #dee2e6; /* Garis vertikal di kiri setiap sel */
-            border-right: 1px solid #dee2e6; /* Garis vertikal di kanan setiap sel */
-        }
+    .table-bordered td {
+        border-left: 1px solid #dee2e6; /* Garis vertikal di kiri setiap sel */
+        border-right: 1px solid #dee2e6; /* Garis vertikal di kanan setiap sel */
+    }
 </style>

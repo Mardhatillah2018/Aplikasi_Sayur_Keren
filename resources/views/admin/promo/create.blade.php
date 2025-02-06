@@ -71,7 +71,10 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="d-flex justify-content-between">
+                    <a href="/admin-promo" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
     </div>
